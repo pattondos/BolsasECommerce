@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "PANEL DE ADMINISTRACIÓN";
+}
+
+<div class="jumbotron" align="center" style="background-color:aquamarine;">
+    <h1>BIENVENIDO</h1>
+</div>
+<div class="row">
+    <div class="col-md-4 col-lg-offset-4">
+
+        @if (!Request.IsAuthenticated)
+        {
+            <img src="~/images/logobolsas.png" style="max-width:100%;width:auto;height:auto;">
+            <hr />
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-10">
+                    <a class="btn btn-default" href="/Account/Login" style="background-color:white; color: black;">
+                        Iniciar sesion
+                    </a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="container-fluid" style="text-align:center">
+                <img src="~/images/logobolsas.png" alt="Alternate Text" style="max-height: 70px; padding: 10px 0;" />
+            </div>
+        }
+    </div>
+</div>

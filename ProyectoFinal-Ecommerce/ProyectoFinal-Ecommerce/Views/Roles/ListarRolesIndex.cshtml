@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ProyectoFinal_Ecommerce.Models.Roles>
+
+@{
+    ViewBag.Title = "ListarRolesIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Roles</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        @if (item.id > 1 && item.id < 7)
+        {
+            switch (item.id)
+            {
+                case 2:
+                    <td>Super Administrador</td>
+                    break;
+                case 3:
+                    <td>Ventas</td>
+                    break;
+                case 4:
+                    <td>Compras</td>
+                    break;
+                case 5:
+                    <td>Envíos</td>
+                    break;
+                case 6:
+                    <td>Finanzas</td>
+                    break;
+
+            }
+            <td>
+                @item.descripcion
+            </td>
+        }
+
+    </tr>
+    }
+
+</table>

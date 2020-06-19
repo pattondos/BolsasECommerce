@@ -1,0 +1,67 @@
+﻿@model ProyectoFinal_Ecommerce.Models.SolicitudesVentasActualizar
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SolicitudesVentasActualizar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioCompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioCompra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioActual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioActual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NuevoPrecio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NuevoPrecio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Productos.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Productos.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

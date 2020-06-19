@@ -1,0 +1,159 @@
+﻿@model Final_Ecommerce.Models.DAL.Productos
+@{
+    ViewBag.Title = "Información de Producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <ul>
+        <li>@Html.ActionLink("Inicio", "Index", "Home") / </li>
+        <li>@Html.ActionLink("Productos", "AllProductos", "Productos") / </li>
+        <li>@Model.nombre</li>
+    </ul>
+</div>
+<div class="info-product-page">
+    <div class="row">
+        <div class="col-lg-6 col-md-7 col-12 mb-3" style="padding: 50px 10px;">
+            <div class="product-page-image">
+                <img class="img-hover" src="~/images/@Model.img" alt="batido">
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-5 col-12 pb-5" style="text-align: left;">
+            <div class="row mb-3 d-md-none">
+                <div class="col-12">
+                    <h2 class="product-name">@Model.nombre</h2>
+                </div>
+                <div class="col-12 price_elem" style="text-align: center;">
+                    <span class="product-form-price form-price" id="product-form-price">$ @Model.precio_venta</span>
+                </div>
+            </div>
+
+            <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" name="buy">
+                <br />
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <!-- Product Categories  -->
+                        <!-- Product Description -->
+                        <div class="form-group description">
+                            <label class="form-control-label">Descripción:</label>
+                            <p>@Model.descripcion &nbsp;</p>
+                        </div>
+
+                        <!-- Out of Stock -->
+                        <div class="form-group product-stock product-out-stock row ">
+                            <label class="col-12 form-control-label">Disponibilidad</label>
+                            <div class="col-12">
+                                @if (Model.cantidad <= 0)
+                                {
+                                    @*<span style="font-size: 1.75rem; font-weight: bold;">Agotado</span>
+                    <p style="font-size: 1.2rem !important;">Este producto se ha quedado sin stock. Puedes consultarnos al respecto..</p>
+                    @Html.ActionLink("Contáctanos", "Contact", "Home")*@
+                                    <div class="col-9">
+                                        <span style="font-size: 1.5rem; font-weight: bold;">Agotado</span>
+                                        <p>Este producto no está disponible. Puedes consultarnos al respecto..</p>
+                                        <div style="font-size: 1.5rem;">
+                                            @Html.ActionLink("Contáctanos", "Contact", "Home")
+                                        </div>
+                                        @*<a href="javascript:history.back()" class="mt-2" title="← o Continúa Comprando">← o Continúa Comprando</a>*@
+                                    </div>
+                                }
+                                else
+                                {
+                                    <p>Actualmente la tienda cuenta con un total de <strong>@Model.cantidad @Model.nombre</strong> disponibles.</p>
+                                }
+                            </div>
+                        </div>
+                        <!-- Not Available -->
+                        @*@if (Model.cantidad == 0)
+        {
+            <div class="form-group product-stock product-unavailable row">
+                <label class="col-3 form-control-label">Disponibilidad:</label>
+                <div class="col-9">
+                    <span class="product-form-price">No Disponible</span>
+                    <p>Este producto no está disponible. Puedes consultarnos al respecto..</p>
+                    @Html.ActionLink("Contáctanos", "Contact", "Home")
+                    @*<a href="javascript:history.back()" class="mt-2" title="← o Continúa Comprando">← o Continúa Comprando</a>*@
+                        @*</div>
+            </div>
+        }*@
+                        <div class="form-group row">
+                            <label class="col-4 form-control-label">Calificación: </label>
+                            <div class="col-8">
+                                @for (var i = 0; i < 5; i++)
+                                {
+                                    if (i < Model.calificacion)
+                                    {
+                                        <i class="fa fa-star fa-2x"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-star-o fa-2x"></i>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3 form-control-label"></label>
+                            <br />
+                            @*@if (Request.IsAuthenticated)
+            {*@
+                            @*<div class="col-md-4 col-md-offset-2">
+                <div class="quantity">
+                    @Html.TextBoxFor(m => m.Carrito.Cantidad, new { @class = "text form-control" })
+                    <input type="number" class="qty form-control" id="input-qty" name="qty" min="1" value="1">
+                </div>
+            </div>*@
+                            @if (Model.cantidad > 0)
+                            {
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-md-offset-4">
+                                    <input type='button' class="button btn btn-success btn-block" value='Añadir al carrito' onclick='window.location = "@Url.Action("AgregarProducto", "Carrito", new { id = Model.id })"' />
+                                    @*<div class="input-group">
+                        <button type="submit" class="btn btn-block btn-success" onclick='window.location = "@Url.Action("AgregarProducto", "Carrito", new { id = Model.id });"'>
+                            <span>
+                                <i class="fa fa-cart-plus"></i>
+                            </span> Añadir al carrito
+                        </button>
+                    </div>*@
+                                </div>
+                            }
+                            @*}
+            else
+            {
+                <span style="font-size: 1.5rem; font-weight: bold;">No ha iniciado sesión</span>
+                <p>Se necesita un inicio de sesión para comprar el producto.</p>
+            }*@
+                        </div>
+                        @if (Session["error"] != null)
+                        {
+                            <div class="row">
+                                <div class="col-md-12" style="text-align: center;">
+                                    <div class="alert-danger alert alert-dismissible" style="height: 60px !important; padding: 10px 20px;">
+                                        <a href="#" class="close" style="padding-right: 10px;" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <span>@Session["error"]</span>
+                                    </div>
+                                </div>
+                            </div>
+                            Session["error"] = null;
+                        }
+                        @if (Session["success"] != null)
+                        {
+                            <div class="row">
+                                <div class="col-md-12" style="text-align:center;">
+                                    <div class="alert-success alert alert-dismissible" style="height: 40px !important; padding: 10px 20px;">
+                                        <a href="#" class="close" style="padding-right: 10px;" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <span>@Session["success"]</span>
+                                    </div>
+                                </div>
+                            </div>
+                            Session["success"] = null;
+                        }
+
+                        @Html.ActionLink("<< Continuar comprando", "AllProductos", "Productos")
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,146 @@
+﻿@using Final_Ecommerce.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOLSAS S.A. - @ViewBag.Title</title>
+    @*@Styles.Render("~/Content/css")*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/MyStyles.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css" />*@
+
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div style="background-image: url('../../images/fondo-e.jpg');">
+        <div class="top-bar d-lg-block">
+            <div class="container">
+                <div class="float-left">
+                    <i class="fa fa-phone"></i> Llámanos: +52 1 722 999 9999
+                </div>
+                <div class="float-right">
+                    <div class="login d-lg-block">
+                        <span class="customer-name">
+                            <i class="fa fa-user-circle-o"></i>
+                        </span>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row no-gutters" style=" padding: 20px 0;">
+                <div class="col-2 d-lg-none nav-icon-content">
+                    <div class="nav-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 " style="height: 6rem; margin: 30px 0 !important;">
+                    @*<span style="background-color: transparent; color: white; font-size: 6rem; margin: auto;">LOGO</span>*@
+                    <img src="~/images/Logo6.png" alt="LOGO" style="max-height: 100%;" />
+                </div>
+                @*if (Request.IsAuthenticated)*@
+                @{
+                    int noP = 0;
+                    decimal total = 0;
+                    if (Session["carrito"] != null)
+                    {
+                        List<CarritoModel> carrito = (List<CarritoModel>)Session["carrito"];
+                        noP = carrito.Sum(item => item.Cantidad);
+                        total = carrito.Sum(item => item.Cantidad * item.Precio_venta);
+                    }
+                    <div class="col-lg-6 col-2" style="margin: 30px 0 !important;">
+                        <div class=" cart float-right">
+                            <a href="/Carrito/Carrito" title="Ver/Editar Carro">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span class="cart-size">@noP</span>
+                                <div class="order-total">$ @total</div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="navbar navbar-default" id="nav-home">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @*@Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Productos", "Productos", "Productos")</li>
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Historial de Compras", "HistorialCompras", "Compras")</li>
+                            <li>@Html.ActionLink("Devoluciones", "HistorialCompras", "Compras")</li>
+                            @*<li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        Compras
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Historial de Compras", "HistorialCompras", "Compras")</li>
+                                    </ul>
+                                </li>*@
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+        <footer class="footer">
+            <hr />
+            <span>&copy; @DateTime.Now.Year - Ecommerce</span>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/funcShop.js"></script>
+    @RenderSection("scripts", required: false)
+    <script>
+
+        window.onload = function () {
+            nobackbutton();
+        };
+
+        function nobackbutton() {
+            window.location.hash = "no-back-button";
+            window.location.hash = "Again-No-back-button"; //chrome
+            window.onhashchange = function () {
+                window.location.hash = "no-back-button";
+            };
+        }
+
+        $(document).ready(function () {
+            $("#my-input-search").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#products-div .row .product-card").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

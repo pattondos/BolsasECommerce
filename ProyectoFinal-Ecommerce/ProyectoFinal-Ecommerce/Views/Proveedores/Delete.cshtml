@@ -1,0 +1,72 @@
+﻿@model ProyectoFinal_Ecommerce.Models.Proveedores
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="text-align: center;">
+    <h3>¿Está seguro que desea eliminar este proveedor?</h3>
+</div>
+<hr />
+<div class="col-md-offset-3">
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.razon_social)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.razon_social)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rfc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rfc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correo)
+        </dt>
+
+        <dd>
+            @Model.correo
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color row">
+        <div class="col-md-offset-1 col-md-3">
+            <input type="submit" value="Eliminar" class="btn btn-danger btn-block" />
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Cancelar", "Index", new { }, new { @class="btn btn-block btn-default"})
+        </div>
+        
+    </div>
+    }
+</div>

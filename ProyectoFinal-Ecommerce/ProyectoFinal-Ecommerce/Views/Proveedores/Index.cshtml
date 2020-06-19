@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProyectoFinal_Ecommerce.Models.Proveedores>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="text-align: center;">
+    <h2>Proveedores</h2>
+</div>
+<table class="table table-striped table-condensed table-hover">
+    <tr>
+        <th>
+            Razon Social
+        </th>
+        <th>
+            RFC
+        </th>
+        @*<th>
+            Dirección
+        </th>
+        <th>
+            Teléfono
+        </th>*@
+        <th>
+            Correo
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.razon_social)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rfc)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>*@
+            <td>
+                @item.correo
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }, new { @class="btn  btn-warning"})
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "btn  btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-8">
+        @*@Html.ActionLink("Agregar Proveedor", "Create", new { @class="btn btn-primary btn-block" })*@
+        <a href="@Url.Action("Create", "Proveedores")" class="btn btn-block btn-primary" style="font-size:1.5rem;"> Agregar Proveedor </a>
+        <a href="@Url.Action("Index", "PagoProveedores")" class="btn btn-block btn-info" style="font-size:1.5rem;"> Pago a proveedor </a>
+    </div>
+</div>

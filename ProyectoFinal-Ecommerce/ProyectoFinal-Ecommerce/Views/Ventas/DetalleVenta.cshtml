@@ -1,0 +1,87 @@
+﻿@model ProyectoFinal_Ecommerce.Models.DetalleVentaModel
+@{
+    ViewBag.Title = "DetalleVenta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="text-align: center;">
+    <h2>
+        Detalle de venta
+    </h2>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-6 col-md-offset-6">
+        <strong><span>Fecha de compra: </span></strong><span>@Model.venta.fecha.ToString("dddd, dd MMMM yyyy").ToUpper()</span>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-5">
+        @{
+            string nombre = Model.usuario.nombre + " " + Model.usuario.apellido_paterno + " " + Model.usuario.apellido_materno;
+        }
+        <strong><span>Comprador: </span></strong><span>@nombre</span>
+    </div>
+    <div class="col-md-5 col-md-offset-1">
+        <strong><span>Email: </span></strong><span>@Model.usuario.correo</span>
+    </div>
+</div>
+<br />
+<div style="text-align: center;">
+    <h4>
+        Productos vendidos
+    </h4>
+</div>
+<table class="table" id="compra-table" style="text-align: center;">
+    <thead>
+        <tr>
+            <th style="text-align: center !important;">Producto</th>
+            <th style="text-align: center !important;">Cantidad</th>
+            <th style="text-align: center !important;">Precio Unitario</th>
+            <th style="text-align: center !important;">Subtotal</th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ProyectoFinal_Ecommerce.Models.ProductoVentaModel item in Model.products)
+        {
+            decimal t = item.precio_venta * item.cantidad;
+            <tr>
+                <td>@item.nombre</td>
+                <td>@item.cantidad</td>
+                <td>$ @item.precio_venta</td>
+                <td>$ @t</td>
+                @*<td style="color: red !important;">
+                        <a href="@Url.Action("Productos", "Productos", new { id = item.id })" class="info" style="color: deepskyblue !important;"><i class="fa fa-eye"></i> Ver</a>
+                    </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="block text-center">
+    <h3></h3>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="block-inside">
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-1" style="text-align: right;">
+                        <p style="font-weight: bold;">SUBTOTAL : </p>
+                    </div>
+                    <div class="col-md-4" style="text-align: right;">
+                        <p style="font-weight: bold;">$ @Model.venta.sub_total </p>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <a href="/Ventas/AllVentas" class="btn btn-block btn-success" style="font-size:1.5rem;">
+                            Regresar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

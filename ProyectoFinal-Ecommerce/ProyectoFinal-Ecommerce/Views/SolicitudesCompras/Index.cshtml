@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ProyectoFinal_Ecommerce.Models.SolicitudesCompras>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Solicitudes de compra de productos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NuevoProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Presupuesto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proveedores.razon_social)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NuevoProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Presupuesto)
+        </td>
+        <td>
+            @switch (item.Status)
+            {
+                case 1:
+                    <span class="bg-warning text-warning text-capitalize">Enviado</span>
+                    break;
+                case 2:
+                    <span class="bg-success text-success text-capitalize">Aprobado</span>
+                    break;
+                case 3:
+                    <span class="bg-danger text-danger text-capitalize">Rechazado</span>
+                    break;
+
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proveedores.razon_social)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

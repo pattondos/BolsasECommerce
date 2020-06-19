@@ -1,0 +1,609 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BolsasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PagoProveedores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_Proveedor" Type="int" Nullable="false" />
+          <Property Name="FechaEmision" Type="date" />
+          <Property Name="FechaEntrega" Type="date" />
+          <Property Name="FechaPago" Type="date" />
+          <Property Name="TotalPagar" Type="date" />
+          <Property Name="Restante" Type="float" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="id_categoria" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="id_proveedor" Type="int" Nullable="false" />
+          <Property Name="precio_compra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="precio_venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+          <Property Name="stat" Type="int" Nullable="false" />
+          <Property Name="img" Type="varchar" MaxLength="30" />
+          <Property Name="calificacion" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="razon_social" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="rfc" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="stat" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SolicitudesCompras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="NuevoProducto" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="Id_Proveedor" Type="int" />
+          <Property Name="Descripcion" Type="text" Nullable="false" />
+          <Property Name="Presupuesto" Type="float" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SolicitudesDevoluciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_Cliente" Type="int" />
+          <Property Name="Id_Producto" Type="int" />
+          <Property Name="PrecioVenta" Type="float" Nullable="false" />
+          <Property Name="Devolucion" Type="float" Nullable="false" />
+          <Property Name="Descripcion" Type="text" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SolicitudesOfertas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_Producto" Type="int" />
+          <Property Name="PrecioActual" Type="float" Nullable="false" />
+          <Property Name="Descripcion" Type="text" />
+          <Property Name="Oferta" Type="float" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SolicitudesVentasActualizar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_Producto" Type="int" />
+          <Property Name="Stock" Type="int" />
+          <Property Name="PrecioCompra" Type="float" />
+          <Property Name="PrecioActual" Type="float" />
+          <Property Name="NuevoPrecio" Type="float" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="apellido_paterno" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="apellido_materno" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="telefono" Type="varchar" MaxLength="13" />
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__PagoProve__Id_Pr__29221CFB">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="PagoProveedores" Type="Self.PagoProveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PagoProveedores">
+              <PropertyRef Name="Id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__Id_Cl__31B762FC">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesDevoluciones" Type="Self.SolicitudesDevoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesDevoluciones">
+              <PropertyRef Name="Id_Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__Id_Pr__2BFE89A6">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesVentasActualizar" Type="Self.SolicitudesVentasActualizar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesVentasActualizar">
+              <PropertyRef Name="Id_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__Id_Pr__2EDAF651">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesCompras" Type="Self.SolicitudesCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesCompras">
+              <PropertyRef Name="Id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__Id_Pr__32AB8735">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesDevoluciones" Type="Self.SolicitudesDevoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesDevoluciones">
+              <PropertyRef Name="Id_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__Id_Pr__3587F3E0">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesOfertas" Type="Self.SolicitudesOfertas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesOfertas">
+              <PropertyRef Name="Id_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BolsasModelStoreContainer">
+          <EntitySet Name="PagoProveedores" EntityType="Self.PagoProveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SolicitudesCompras" EntityType="Self.SolicitudesCompras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SolicitudesDevoluciones" EntityType="Self.SolicitudesDevoluciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SolicitudesOfertas" EntityType="Self.SolicitudesOfertas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SolicitudesVentasActualizar" EntityType="Self.SolicitudesVentasActualizar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PagoProve__Id_Pr__29221CFB" Association="Self.FK__PagoProve__Id_Pr__29221CFB">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="PagoProveedores" EntitySet="PagoProveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__Id_Cl__31B762FC" Association="Self.FK__Solicitud__Id_Cl__31B762FC">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="SolicitudesDevoluciones" EntitySet="SolicitudesDevoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__Id_Pr__2BFE89A6" Association="Self.FK__Solicitud__Id_Pr__2BFE89A6">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="SolicitudesVentasActualizar" EntitySet="SolicitudesVentasActualizar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__Id_Pr__2EDAF651" Association="Self.FK__Solicitud__Id_Pr__2EDAF651">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="SolicitudesCompras" EntitySet="SolicitudesCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__Id_Pr__32AB8735" Association="Self.FK__Solicitud__Id_Pr__32AB8735">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="SolicitudesDevoluciones" EntitySet="SolicitudesDevoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__Id_Pr__3587F3E0" Association="Self.FK__Solicitud__Id_Pr__3587F3E0">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="SolicitudesOfertas" EntitySet="SolicitudesOfertas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BolsasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PagoProveedores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_Proveedor" Type="Int32" Nullable="false" />
+          <Property Name="FechaEmision" Type="DateTime" Precision="0" />
+          <Property Name="FechaEntrega" Type="DateTime" Precision="0" />
+          <Property Name="FechaPago" Type="DateTime" Precision="0" />
+          <Property Name="TotalPagar" Type="DateTime" Precision="0" />
+          <Property Name="Restante" Type="Double" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK__PagoProve__Id_Pr__29221CFB" FromRole="PagoProveedores" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_categoria" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="id_proveedor" Type="Int32" Nullable="false" />
+          <Property Name="precio_compra" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="precio_venta" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          <Property Name="stat" Type="Int32" Nullable="false" />
+          <Property Name="img" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="calificacion" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="SolicitudesVentasActualizar" Relationship="Self.FK__Solicitud__Id_Pr__2BFE89A6" FromRole="Productos" ToRole="SolicitudesVentasActualizar" />
+          <NavigationProperty Name="SolicitudesDevoluciones" Relationship="Self.FK__Solicitud__Id_Pr__32AB8735" FromRole="Productos" ToRole="SolicitudesDevoluciones" />
+          <NavigationProperty Name="SolicitudesOfertas" Relationship="Self.FK__Solicitud__Id_Pr__3587F3E0" FromRole="Productos" ToRole="SolicitudesOfertas" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="razon_social" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rfc" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stat" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PagoProveedores" Relationship="Self.FK__PagoProve__Id_Pr__29221CFB" FromRole="Proveedores" ToRole="PagoProveedores" />
+          <NavigationProperty Name="SolicitudesCompras" Relationship="Self.FK__Solicitud__Id_Pr__2EDAF651" FromRole="Proveedores" ToRole="SolicitudesCompras" />
+        </EntityType>
+        <EntityType Name="SolicitudesCompras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="NuevoProducto" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="Id_Proveedor" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Presupuesto" Type="Double" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK__Solicitud__Id_Pr__2EDAF651" FromRole="SolicitudesCompras" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="SolicitudesDevoluciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_Cliente" Type="Int32" />
+          <Property Name="Id_Producto" Type="Int32" />
+          <Property Name="PrecioVenta" Type="Double" Nullable="false" />
+          <Property Name="Devolucion" Type="Double" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__Solicitud__Id_Pr__32AB8735" FromRole="SolicitudesDevoluciones" ToRole="Productos" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Solicitud__Id_Cl__31B762FC" FromRole="SolicitudesDevoluciones" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="SolicitudesOfertas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_Producto" Type="Int32" />
+          <Property Name="PrecioActual" Type="Double" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Oferta" Type="Double" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__Solicitud__Id_Pr__3587F3E0" FromRole="SolicitudesOfertas" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="SolicitudesVentasActualizar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_Producto" Type="Int32" />
+          <Property Name="Stock" Type="Int32" />
+          <Property Name="PrecioCompra" Type="Double" />
+          <Property Name="PrecioActual" Type="Double" />
+          <Property Name="NuevoPrecio" Type="Double" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__Solicitud__Id_Pr__2BFE89A6" FromRole="SolicitudesVentasActualizar" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido_paterno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido_materno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SolicitudesDevoluciones" Relationship="Self.FK__Solicitud__Id_Cl__31B762FC" FromRole="Usuarios" ToRole="SolicitudesDevoluciones" />
+        </EntityType>
+        <Association Name="FK__PagoProve__Id_Pr__29221CFB">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="PagoProveedores" Type="Self.PagoProveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PagoProveedores">
+              <PropertyRef Name="Id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__Id_Pr__2BFE89A6">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesVentasActualizar" Type="Self.SolicitudesVentasActualizar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesVentasActualizar">
+              <PropertyRef Name="Id_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__Id_Pr__32AB8735">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesDevoluciones" Type="Self.SolicitudesDevoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesDevoluciones">
+              <PropertyRef Name="Id_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__Id_Pr__3587F3E0">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesOfertas" Type="Self.SolicitudesOfertas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesOfertas">
+              <PropertyRef Name="Id_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__Id_Pr__2EDAF651">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesCompras" Type="Self.SolicitudesCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesCompras">
+              <PropertyRef Name="Id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__Id_Cl__31B762FC">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesDevoluciones" Type="Self.SolicitudesDevoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesDevoluciones">
+              <PropertyRef Name="Id_Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntitiesBolsas1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PagoProveedores" EntityType="Self.PagoProveedores" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" />
+          <EntitySet Name="SolicitudesCompras" EntityType="Self.SolicitudesCompras" />
+          <EntitySet Name="SolicitudesDevoluciones" EntityType="Self.SolicitudesDevoluciones" />
+          <EntitySet Name="SolicitudesOfertas" EntityType="Self.SolicitudesOfertas" />
+          <EntitySet Name="SolicitudesVentasActualizar" EntityType="Self.SolicitudesVentasActualizar" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK__PagoProve__Id_Pr__29221CFB" Association="Self.FK__PagoProve__Id_Pr__29221CFB">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="PagoProveedores" EntitySet="PagoProveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__Id_Pr__2BFE89A6" Association="Self.FK__Solicitud__Id_Pr__2BFE89A6">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="SolicitudesVentasActualizar" EntitySet="SolicitudesVentasActualizar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__Id_Pr__32AB8735" Association="Self.FK__Solicitud__Id_Pr__32AB8735">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="SolicitudesDevoluciones" EntitySet="SolicitudesDevoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__Id_Pr__3587F3E0" Association="Self.FK__Solicitud__Id_Pr__3587F3E0">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="SolicitudesOfertas" EntitySet="SolicitudesOfertas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__Id_Pr__2EDAF651" Association="Self.FK__Solicitud__Id_Pr__2EDAF651">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="SolicitudesCompras" EntitySet="SolicitudesCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__Id_Cl__31B762FC" Association="Self.FK__Solicitud__Id_Cl__31B762FC">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="SolicitudesDevoluciones" EntitySet="SolicitudesDevoluciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BolsasModelStoreContainer" CdmEntityContainer="EntitiesBolsas1">
+          <EntitySetMapping Name="PagoProveedores">
+            <EntityTypeMapping TypeName="BolsasModel.PagoProveedores">
+              <MappingFragment StoreEntitySet="PagoProveedores">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Proveedor" ColumnName="Id_Proveedor" />
+                <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+                <ScalarProperty Name="TotalPagar" ColumnName="TotalPagar" />
+                <ScalarProperty Name="Restante" ColumnName="Restante" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="BolsasModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+                <ScalarProperty Name="precio_compra" ColumnName="precio_compra" />
+                <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="stat" ColumnName="stat" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedores">
+            <EntityTypeMapping TypeName="BolsasModel.Proveedores">
+              <MappingFragment StoreEntitySet="Proveedores">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="stat" ColumnName="stat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SolicitudesCompras">
+            <EntityTypeMapping TypeName="BolsasModel.SolicitudesCompras">
+              <MappingFragment StoreEntitySet="SolicitudesCompras">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NuevoProducto" ColumnName="NuevoProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Id_Proveedor" ColumnName="Id_Proveedor" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Presupuesto" ColumnName="Presupuesto" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SolicitudesDevoluciones">
+            <EntityTypeMapping TypeName="BolsasModel.SolicitudesDevoluciones">
+              <MappingFragment StoreEntitySet="SolicitudesDevoluciones">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
+                <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
+                <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+                <ScalarProperty Name="Devolucion" ColumnName="Devolucion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SolicitudesOfertas">
+            <EntityTypeMapping TypeName="BolsasModel.SolicitudesOfertas">
+              <MappingFragment StoreEntitySet="SolicitudesOfertas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
+                <ScalarProperty Name="PrecioActual" ColumnName="PrecioActual" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Oferta" ColumnName="Oferta" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SolicitudesVentasActualizar">
+            <EntityTypeMapping TypeName="BolsasModel.SolicitudesVentasActualizar">
+              <MappingFragment StoreEntitySet="SolicitudesVentasActualizar">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="PrecioCompra" ColumnName="PrecioCompra" />
+                <ScalarProperty Name="PrecioActual" ColumnName="PrecioActual" />
+                <ScalarProperty Name="NuevoPrecio" ColumnName="NuevoPrecio" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="BolsasModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido_paterno" ColumnName="apellido_paterno" />
+                <ScalarProperty Name="apellido_materno" ColumnName="apellido_materno" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

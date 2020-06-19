@@ -1,0 +1,518 @@
+﻿@import url(font-awesome.css);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300);
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
+@import url('https://fonts.googleapis.com/css?family=Grand+Hotel&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Big+Shoulders+Display&display=swap&subset=latin-ext');
+
+.top-bar {
+    height: 45px;
+    line-height: 45px;
+    font-size: 0.875em;
+    background: #222;
+    color: #dedede;
+    position: relative;
+    z-index: 999;
+}
+
+#login-link {
+    color: #dedede;
+}
+
+.d-lg-block {
+    display: block !important;
+}
+
+.d-none {
+    display: none !important;
+}
+
+
+body {
+    font-family: 'Roboto Slab' !important;
+}
+
+h1, h2 {
+    font-family: 'Grand Hotel', serif !important;
+}
+
+.navbar-brand .text-logo, footer .text-logo-footer {
+    font-family: 'Grand Hotel', serif !important;
+}
+
+p, .caption h4, label, table, .panel {
+    font-size: 16px !important;
+}
+
+@media only screen and (min-width: 992px) {
+    h2.section-title,
+    h1.section-title,
+    .product-page h1 {
+        font-size: 44px !important;
+    }
+}
+
+/*.navbar-brand, .text-logo {
+    font-size: 46px !important;
+}
+
+.navbar-expand-md .navbar-collapse li a {
+    font-size: 14px !important;
+}*/
+
+.float-left {
+    float: left !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
+.top-bar .login {
+    display: inline-block !important;
+}
+
+.top-bar i.linear-icon {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.top-bar span {
+    margin: 0 5px;
+}
+
+#login-link span.customer-name {
+    width: 100%;
+    display: inline;
+    float: none;
+}
+
+.top-bar {
+    font-size: 14px !important;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.header-block {
+    position: absolute;
+    z-index: 4;
+    left: 0;
+    width: 100%;
+}
+
+    .header-block .row {
+        padding: 30px 0;
+    }
+
+.align-items-center {
+    -ms-flex-align: center !important;
+    align-items: center !important;
+    align-content: center !important;
+}
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+/*.navbar-brand .text-logo, footer .text-logo-footer {
+    font-family: 'Grand Hotel' !important;
+}
+
+.navbar-brand, .header-block .text-logo, .cart .navbar-brand {
+    color: #fff;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.navbar-brand, .text-logo {
+    font-size: 46px !important;
+}*/
+
+.cart a {
+    color: #fff;
+    position: relative;
+    display: block;
+    font-size: 3rem;
+}
+
+/*a, a:hover, input.text, input.text:focus, select.select, select.select:hover {
+    text-decoration: none !important;
+}
+
+a {
+    color: #333;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}*/
+
+.cart-size {
+    font-size: 30px;
+    display: inline-block;
+    background: #e22323;
+    color: #fff;
+    border-radius: 13px;
+    min-width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 15px;
+    padding: 2px;
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    font-size: 0.625rem;
+}
+
+.order-total {
+    display: inline !important;
+    font-size: 2rem;
+}
+
+#nav-home {
+    margin: 0 5rem !important;
+    margin-bottom: 1em !important;
+    padding: .55em .5em;
+    font-size: 1.5rem;
+}
+
+ul.navbar-nav li a {
+    color: #000 !important;
+}
+
+    ul.navbar-nav li a:hover {
+        text-decoration: underline;
+    }
+
+/*div.cart a {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}*/
+footer.footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    /*position: absolute;*/
+    bottom: 0;
+    width: 100%;
+    /*height: 2.5rem;*/
+    padding-bottom: 1.5rem;
+}
+
+div.carousel-inner div.item img {
+    height: 500px !important;
+    margin: auto;
+    width: 70%;
+}
+
+#myCarousel {
+    height: 50% !important;
+}
+
+div.carousel-caption {
+    font-family: 'Grand Hotel', sans-serif;
+}
+
+    div.carousel-caption h3 {
+        font-size: 4.5rem !important;
+    }
+
+    div.carousel-caption p {
+        font-size: 3rem !important;
+    }
+
+.about {
+    width: 100%;
+    background: #FFF;
+    padding: 4rem 4rem;
+    text-align: center;
+}
+
+div.about h1,
+div.about h2 {
+    font-size: 4rem;
+    font-family: 'Big Shoulders Display', sans-serif !important;
+    border: none;
+    border-bottom: 2px rgb(3,205,103) solid;
+    border-radius: 10%;
+}
+
+div.about img {
+    width: 65%;
+    height: auto;
+}
+
+h2.caption-h,
+h1.caption-h {
+    margin: auto;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+p.text-h {
+    padding: 1rem 0;
+    text-align: justify;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+span.dot {
+    content: '';
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid rgb(3,205,103);
+    display: inline-block;
+    padding: 1rem;
+}
+
+    span.dot i.fa-phone {
+        font-size: 6rem;
+        color: rgb(3,205,103);
+    }
+
+    span.dot i.fa-envelope-o {
+        font-size: 5rem;
+        color: rgb(3,205,103);
+    }
+
+    span.dot i.fa-facebook-f {
+        padding-top: 5px;
+        font-size: 5rem;
+        color: rgb(3,205,103);
+    }
+
+.phone-number-contact {
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: 100;
+}
+
+.control-label {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 100;
+}
+
+#send-message-btn {
+    height: 50px !important;
+    width: 200px !important;
+    font-size: 1.7rem;
+}
+
+div.field input.text {
+    height: 50px !important;
+    font-size: 1.75rem;
+}
+
+textarea.text {
+    height: 170px !important;
+    font-size: 1.5rem;
+}
+
+.login a {
+    color: rgb(222,222,222) !important;
+}
+
+.breadcrumbs {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding-top: 10px;
+    padding-bottom: 10px !important;
+    color: #fff !important;
+    width: 100%;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+    .breadcrumbs ul {
+        left: 0;
+        margin-bottom: 0px !important;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    .breadcrumbs a {
+        color: white;
+        font-family: 'Roboto Condensed', sans-serif !important;
+        font-weight: 100 !important;
+    }
+
+    .breadcrumbs ul li {
+        list-style-type: none;
+        display: inline-block;
+        font-family: 'Roboto Condensed', sans-serif !important;
+        font-weight: bold !important;
+    }
+
+.login-page {
+    width: 100%;
+    background: #FFF;
+    padding: 2rem 4rem;
+    text-align: center;
+}
+
+.info-product-page {
+    width: 100%;
+    background: #FFF;
+    padding: 2rem 4rem;
+    text-align: center;
+}
+
+h4 {
+    font-size: 3rem;
+    font-family: 'Big Shoulders Display', sans-serif !important;
+}
+
+div.login-page h1,
+div.login-page h2 {
+    font-size: 4rem;
+    font-family: 'Big Shoulders Display', sans-serif !important;
+    border: none;
+    border-bottom: 2px rgb(3,205,103) solid;
+    border-radius: 10%;
+}
+
+
+div.info-product-page h2 {
+    font-size: 4.5rem;
+    font-family: 'Grand Hotel', sans-serif !important;
+    border: none;
+    border-bottom: 2px rgb(3,205,103) solid;
+    border-radius: 10%;
+}
+
+.block h3 {
+    font-size: 2.8rem;
+    font-family: 'Big Shoulders Display', sans-serif !important;
+    border: none;
+    border-bottom: 2px rgb(3,205,103) solid;
+    border-radius: 10%;
+}
+
+.block .block-inside {
+    padding: 15px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    background: rgb(250, 250,250);
+}
+
+.block-inside label {
+    font-size: 1.7rem !important;
+    font-weight: 400 !important;
+}
+
+#submit_login {
+    height: 50px !important;
+    font-family: 'Roboto Slab', sans-serif !important;
+    font-size: 1.7rem;
+}
+
+#register_login,
+#register_customer {
+    height: 50px !important;
+    font-family: 'Roboto Slab', sans-serif !important;
+    font-size: 1.7rem;
+}
+
+.product-block {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+}
+
+    .product-block .caption {
+        text-align: center;
+        padding: 10px;
+        min-height: 90px;
+    }
+
+    .product-block .product-image {
+        display: block;
+        overflow: hidden;
+        height: 230px;
+        width: auto;
+        position: relative;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .product-block .caption .list-price {
+        font-weight: 700;
+        font-size: 1.8rem !important;
+    }
+
+    .product-block .product-image img {
+        margin: auto !important;
+        height: 100%;
+        width: auto;
+    }
+
+.caption h3 a {
+    font-family: 'Roboto Slab', sans-serif !important;
+    font-size: 2rem !important;
+    color: black;
+}
+
+.product-page-image img {
+    width: 100%;
+}
+
+img.img-hover {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.product-name {
+    text-align: center !important;
+}
+
+h2.product-name {
+    font-family: 'Grand Hotel', sans-serif !important;
+}
+
+.product-form-price {
+    font-size: 1.5em;
+}
+
+.product-form-price {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.form-control-label {
+    border: none;
+    border-bottom: 1px black solid;
+    width: 100%;
+}
+
+.desc-pro-btn {
+    height: 30px !important;
+    width: 110px !important;
+    font-size: 1.3rem;
+}
+
+#carrito-table > tbody > tr > td > img {
+    height: 30px !important;
+}
+
+#compras-table > tbody > tr > td > img {
+    height: 30px !important;
+}
+
+/*h1.caption-h::before,
+h2.caption-h::before {
+    content: ' ';
+    height: 2px !important;
+    width: 160px !important;
+    background: rgb(3, 205, 103);
+    position: absolute;
+    margin-left: -40px;
+    bottom: -50px;
+}*/

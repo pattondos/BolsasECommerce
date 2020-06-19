@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ProyectoFinal_Ecommerce.Models.PagoProveedores>
+
+@{
+    ViewBag.Title = "P Proveedores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Pago de proveedores</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaEmision)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaEntrega)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPagar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Restante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proveedores.razon_social)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaEmision)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaEntrega)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPago)
+            </td>
+            <td>
+                $ 1324
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Restante)
+            </td>
+            <td>
+                @switch (item.Status)
+                {
+                    case 1:
+                        <span class="bg-warning text-warning text-capitalize">Enviado</span>
+                        break;
+                    case 2:
+                        <span class="bg-success text-success text-capitalize">Aprobado</span>
+                        break;
+                    case 3:
+                        <span class="bg-danger text-danger text-capitalize">Rechazado</span>
+                        break;
+
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proveedores.razon_social)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class="btn btn-warning"}) 
+                @Html.ActionLink("Detalles", "Details", new { id = item.Id },new { @class = "btn btn-info" }) 
+                @Html.ActionLink("Borrar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="form-group col-md-offset-4 col-md-4">
+@Html.ActionLink("Ingresar nueva", "Create", "PagoProveedores", new { area = "" }, new { @class = "btn btn-primary" })
+</div>

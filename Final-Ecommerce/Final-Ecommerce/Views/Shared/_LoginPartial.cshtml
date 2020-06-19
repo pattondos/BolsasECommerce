@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNet.Identity
+@using Final_Ecommerce.Models.DAL
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        if (Session["usr"] != null)
+        {
+            Usuarios usr = (Usuarios)Session["usr"];
+            @Html.ActionLink("Bienvenido " + usr.username + "!", "Perfil", "Usuarios")
+            @*<span>Bienvenido(a)<span>@usr.username</span>!</span>*@
+        }
+        <span>|</span>
+        <a href="javascript:document.getElementById('logoutForm').submit()"> Cerrar sesión</a>
+        @*@Html.AntiForgeryToken()
+            if (Session["usr"] != null)
+            {
+                Usuarios usr = (Usuarios)Session["usr"];
+                @Html.ActionLink("Bienvenido(a) " + ((Usuarios)Session["usr"]).username + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bienvenido(a)<span>@usr.username</span>!<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Historial de Compras", "HistorialCompras", "Compras")</li>
+                    </ul>
+                    <span>|</span>
+                    <a href="javascript:document.getElementById('logoutForm').submit()"> Cerrar sesión</a>
+                </div>
+            }
+            else
+            {
+                <a href="javascript:document.getElementById('logoutForm').submit()"> Cerrar sesión</a>
+            }*@
+    }
+}
+else
+{
+    @Html.ActionLink("Ingresar ", "Login", "Account")<span>|</span>@Html.ActionLink(" Registrarse", "Register", "Usuarios")
+}

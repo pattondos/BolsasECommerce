@@ -1,0 +1,114 @@
+﻿@using Final_Ecommerce.Models
+@{
+    ViewBag.Title = "Carrito de Compras";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <ul>
+        <li>@Html.ActionLink("Productos", "Productos", "Productos") / </li>
+        <li>CARRITO DE COMPRAS</li>
+    </ul>
+</div>
+
+<div class="login-page">
+    <h2>
+        Carrito de compras
+    </h2>
+    <br />
+    <table class="table" id="carrito-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th style="text-align: center !important;">Producto</th>
+                <th style="text-align: center !important;">Cantidad</th>
+                <th style="text-align: center !important;">Precio Unitario</th>
+                <th style="text-align: center !important;">Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Session["carrito"] != null)
+            {
+                if (((List<CarritoModel>)Session["carrito"]).Count() > 0)
+                {
+                    foreach (CarritoModel item in (List<CarritoModel>)Session["carrito"])
+                    {
+                        decimal t = item.Precio_venta * item.Cantidad;
+                        <tr>
+                            <td><img src="~/images/@item.Img" alt="Batido 1" width="30" /></td>
+                            <td>@item.Nombre</td>
+                            <td>@item.Cantidad</td>
+                            <td>$ @item.Precio_venta</td>
+                            <td>$ @t</td>
+                            <td style="color: red !important;">
+                                <a href="@Url.Action("DropProducto", "Carrito", new { id = item.Id_producto })" class="danger" style="color: red !important;"><i class="fa danger fa-trash"></i> Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" align="center">
+                            No se han añadido productos al carrito.
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" align="center">
+                        No se han añadido productos al carrito.
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="block text-center">
+        <h3></h3>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="block-inside">
+                    <div class="row">
+                        <div class="col-md-5 col-md-offset-1">
+                            <p style="font-weight: bold;">TOTAL: </p>
+                        </div>
+                        <div class="col-md-5">
+                            @{
+                                decimal total = 0;
+                                if (Session["carrito"] != null)
+                                {
+                                    List<CarritoModel> carrito = (List<CarritoModel>)Session["carrito"];
+                                    total = carrito.Sum(item => item.Cantidad * item.Precio_venta);
+                                }
+                            }
+                            <p style="font-weight: bold;">$ @total </p>
+                        </div>
+                    </div>
+                    @if (Session["carrito"] != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <a href="@Url.Action("PaymentWithPayPal", "Payment")" class="btn btn-block btn-success" style="font-size:1.5rem;"> Proceder con el pago </a>
+                                @*<a href="#" class="btn btn-block btn-success" style="font-size:1.5rem;">
+                                        Proceder con el pago
+                                    </a>*@
+                            </div>
+                        </div>
+                    }
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            @*@Html.ActionLink("Únete", "Registrar", "Registro")*@
+                            <a href="/Productos/AllProductos" class="btn btn-block btn-success" style="font-size:1.5rem;">
+                                Continuar comprando
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

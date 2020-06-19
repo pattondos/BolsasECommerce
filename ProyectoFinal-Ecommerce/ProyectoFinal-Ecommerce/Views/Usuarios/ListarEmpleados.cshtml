@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ProyectoFinal_Ecommerce.Models.Usuarios>
+
+<h2 style="text-align:center;">EMPLEADOS "SMOOTHIE"</h2>
+<br />
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th style="text-transform:uppercase; text-align:center">
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th style="text-transform:uppercase; text-align:center">
+            @Html.DisplayNameFor(model => model.apellido_paterno)
+        </th>
+        <th style="text-transform:uppercase; text-align:center">
+            @Html.DisplayNameFor(model => model.apellido_materno)
+        </th>
+        <th style="text-transform:uppercase; text-align:center">
+            @Html.DisplayNameFor(model => model.correo)
+        </th>
+        <th style="text-transform:uppercase; text-align:center">
+            @Html.DisplayNameFor(model => model.role_id)
+        </th>
+        <th style="text-transform:uppercase; text-align:center">
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.role_id != 1)
+        {
+            <tr>
+                <td style="text-transform:uppercase; text-align:center">
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td style="text-transform:uppercase; text-align:center">
+                    @Html.DisplayFor(modelItem => item.apellido_paterno)
+                </td>
+                <td style="text-transform:uppercase; text-align:center">
+                    @Html.DisplayFor(modelItem => item.apellido_materno)
+                </td>
+                <td style="text-transform:uppercase; text-align:center">
+                    @Html.DisplayFor(modelItem => item.correo)
+                </td>
+                <td style="text-transform:uppercase; text-align:center">
+                    @switch (item.role_id)
+                    {
+                        case 2:
+                    <span>Super Admin</span>
+                            break;
+                        case 3:
+                    <span>Ventas</span>
+                            break;
+                        case 4:
+                    <span>Compras</span>
+                            break;
+                    }
+                </td>
+                <td style="text-transform:uppercase; text-align:center">
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+                <td style="text-transform:uppercase; text-align:center">
+                    @if (item.role_id != 2)
+                    {
+                        @Html.ActionLink("Eliminar", "EliminarUsuarios", new { item.id }, new { @class = "btn btn-danger" })
+                    }
+                    @Html.ActionLink("Editar", "Perfil", new { item.id }, new { @class = "btn btn-warning" })
+                </td>
+            </tr>
+        }
+
+    }
+</table>
+<br />
+<br />
+<div class="form-group col-md-offset-4 col-md-4">
+    @Html.ActionLink("Ingresar Empleado", "Registro", "Usuarios", new { area = "" }, new { @class = "btn btn-primary" })
+</div>

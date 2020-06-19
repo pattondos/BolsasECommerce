@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Final_Ecommerce.Models.DAL.Productos>
+@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<List<Final_Ecommerce.Models.DAL.Productos>> allP = new List<List<Final_Ecommerce.Models.DAL.Productos>>(2);
+    for (var i = 0; i < 2; i++)
+    {
+        allP.Add(new List<Final_Ecommerce.Models.DAL.Productos>());
+    }
+    for (var i = 0; i < 4; i++)
+    {
+        allP[1].Add(Model.ElementAt(Model.Count() - 1 - i));
+    }
+    var x = 0;
+    foreach (var item in Model)
+    {
+        if (item.calificacion >= 4)
+        {
+            allP[0].Add(item);
+            x++;
+        }
+        if (x > 3) { break; }
+    }
+}
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul>
+        <li>@Html.ActionLink("Inicio", "Index", "Home") / </li>
+        <li>Productos Destacados</li>
+    </ul>
+</div>
+<div class="login-page">
+    <h2>Productos Destacados</h2>
+    <div class="row">
+        @foreach (var p in allP[0])
+        {
+            <div class="col-md-3 product-card">
+                <div class="product-block">
+                    <div class="product-image">
+                        <img src="~/images/@p.img" />
+                    </div>
+                    <div class="caption">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 style="font-size: 1.5rem;">
+                                    @p.nombre
+                                    @*@Html.ActionLink("Batido", "InfoProducto", new { id = p.id })*@
+                                </h3>
+                                <div class="list-price">
+                                    <span class="product-block-list">$ @p.precio_venta</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" style="margin-top: 2em;">
+                                    <div style="text-align:right; " class="actions">
+                                        <input type='button' class="button btn btn-success desc-pro-btn" value='Descripción' onclick='window.location = "@Url.Action("InfoProducto", "Productos", new {id = p.id})";' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <br />
+    <h2>Últimos Productos</h2>
+    <div class="row">
+        @foreach (var p in allP[1])
+        {
+            <div class="col-md-3 product-card">
+                <div class="product-block">
+                    <div class="product-image">
+                        <img src="~/images/@p.img" />
+                    </div>
+                    <div class="caption">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 style="font-size: 1.5rem;">
+                                    @p.nombre
+                                    @*@Html.ActionLink("Batido", "InfoProducto", new { id = p.id })*@
+                                </h3>
+                                <div class="list-price">
+                                    <span class="product-block-list">$ @p.precio_venta</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" style="margin-top: 2em;">
+                                    <div style="text-align:right; " class="actions">
+                                        <input type='button' class="button btn btn-success desc-pro-btn" value='Descripción' onclick='window.location = "@Url.Action("InfoProducto", "Productos", new {id = p.id})";' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <br />
+    <div style="text-align: center; font-weight: bold; text-decoration: underline;">
+        @Html.ActionLink("TODOS LOS PRODUCTOS", "AllProductos", "Productos")
+    </div>
+</div>
+

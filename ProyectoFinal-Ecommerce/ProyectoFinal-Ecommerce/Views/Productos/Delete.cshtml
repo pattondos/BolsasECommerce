@@ -1,0 +1,115 @@
+﻿@model ProyectoFinal_Ecommerce.Models.Productos
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="text-align: center;">
+    <h3>¿Está seguro que desea eliminar este proveedor?</h3>
+</div>
+<hr />
+<div class="col-md-offset-3">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.id_categoria)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.id_categoria)
+            </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_proveedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_proveedor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio_compra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio_compra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio_venta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio_venta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stock)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.stat)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.stat)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.img)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.img)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.calificacion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.calificacion)
+            </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="col-md-offset-1 col-md-3">
+            <input type="submit" value="Eliminar" class="btn btn-danger btn-block" />
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Cancelar", "Index", new { }, new { @class = "btn btn-block btn-default" })
+        </div>
+    }
+</div>

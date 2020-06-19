@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "EMPLEADOS";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        @ViewBag.Title;
+    </title>
+</head>
+<body>
+    <br />
+    <br />
+    <h2 style="text-align:center;">EMPLEADOS</h2>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-sm-6" style="text-align:center">
+            <div class="card">
+                <img src="~/Content/Imagenes/listar.png" style="width:60%" />
+                <p> @Html.ActionLink(" Listar Empleados", "ListarEmpleados", "Usuarios", new { area = "" }, new { @class = "btn" })</p>
+
+            </div>
+        </div>
+
+        <div class="col-sm-6" style="text-align:center">
+            <div class="card">
+                <img src="~/Content/Imagenes/agregar.png" style="width:60%" />
+                <p>@Html.ActionLink("Ingresar Empleado", "Registro", "Usuarios", new { area = "" }, new { @class = "btn" })</p>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+</body>
+</html>

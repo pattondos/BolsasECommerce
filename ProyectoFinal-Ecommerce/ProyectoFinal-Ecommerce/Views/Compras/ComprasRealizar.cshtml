@@ -1,0 +1,108 @@
+﻿@using ProyectoFinal_Ecommerce.Models
+@{
+    ViewBag.Title = "Carrito de Compras";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>
+    Compras por realizar
+</h2>
+<br />
+<table class="table" id="carrito-table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio de compra</th>
+            <th>Subtotal</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Session["compra"] != null)
+        {
+            if (((List<ProductoCompraModel>)Session["compra"]).Count() > 0)
+            {
+                foreach (ProductoCompraModel item in (List<ProductoCompraModel>)Session["compra"])
+                {
+                    decimal t = item.precio_compra * item.cantidad;
+                    <tr>
+                        <td>@item.nombre</td>
+                        <td>@item.cantidad</td>
+                        <td>$ @item.precio_compra</td>
+                        <td>$ @t</td>
+                        <td style="color: red !important;">
+                            <a href="@Url.Action("DropProducto", "Compras", new { id = item.id })" class="danger" style="color: red !important;"><i class="fa danger fa-trash"></i> Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" align="center">
+                        No hay compras por realizar
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" align="center">
+                    No hay compras por realizar
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="block text-center">
+    <h3></h3>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="block-inside">
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-1">
+                        <p style="font-weight: bold;">TOTAL: </p>
+                    </div>
+                    <div class="col-md-5">
+                        @{
+                            decimal total = 0;
+                            if (Session["compra"] != null)
+                            {
+                                List<ProductoCompraModel> carrito = (List<ProductoCompraModel>)Session["compra"];
+                                total = carrito.Sum(item => item.cantidad * item.precio_compra);
+                            }
+                        }
+                        <p style="font-weight: bold;">$ @total </p>
+                    </div>
+                </div>
+                @if (Session["compra"] != null)
+                {
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            @*<a href="@Url.Action("PaymentWithPayPal", "Payment")" class="btn btn-block btn-success" style="font-size:1.5rem;"> Proceder con el pago </a>*@
+                            @*<a href="#" class="btn btn-block btn-success" style="font-size:1.5rem;">
+                                    Proceder con el pago
+                                </a>*@
+                            <a href="/Compras/ConfirmarCompra" class="btn btn-block btn-success" style="font-size:1.5rem;">
+                                Confirmar pedido
+                            </a>
+                        </div>
+                    </div>
+                }
+                <br />
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        @*@Html.ActionLink("Únete", "Registrar", "Registro")*@
+                        <a href="/Compras/AllCompras" class="btn btn-block btn-default" style="font-size:1.5rem;">
+                            Cancelar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,73 @@
+﻿@model ProyectoFinal_Ecommerce.Models.SolicitudesCompras
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Borrar solicitud</h2>
+
+<h3>¿Deseas Borrar esta solicitud?</h3>
+<div>
+    <h4>SolicitudesCompras</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NuevoProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NuevoProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Presupuesto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Presupuesto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proveedores.razon_social)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proveedores.razon_social)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="79148599857b4aa5bba043c22fb6f8f2" Name="Diagram1">
+        <EntityTypeShape EntityType="BolsasModel.PagoProveedores" Width="1.5" PointX="8" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsasModel.Productos" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsasModel.Proveedores" Width="1.5" PointX="5.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsasModel.SolicitudesCompras" Width="1.5" PointX="8" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsasModel.SolicitudesDevoluciones" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsasModel.SolicitudesOfertas" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsasModel.SolicitudesVentasActualizar" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsasModel.Usuarios" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="BolsasModel.FK__PagoProve__Id_Pr__29221CFB" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsasModel.FK__Solicitud__Id_Pr__2BFE89A6" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsasModel.FK__Solicitud__Id_Pr__32AB8735" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsasModel.FK__Solicitud__Id_Pr__3587F3E0" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsasModel.FK__Solicitud__Id_Pr__2EDAF651" ManuallyRouted="false" />
+        <AssociationConnector Association="BolsasModel.FK__Solicitud__Id_Cl__31B762FC" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
