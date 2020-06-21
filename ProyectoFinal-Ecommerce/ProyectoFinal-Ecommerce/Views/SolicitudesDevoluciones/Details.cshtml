@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles </h2>
 
 <div>
-    <h4>SolicitudesDevoluciones</h4>
+    <h4>Solicitud de Devoluciones</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Devolucion)
+         Diferencia
         </dt>
 
         <dd>
@@ -44,7 +44,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Productos.nombre)
+            Pedido
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Venta)
+        </dd>
+
+        <dt>
+            Producto
         </dt>
 
         <dd>
@@ -52,16 +60,24 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Usuarios.nombre)
+            Usuario
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Usuarios.nombre)
         </dd>
 
+        <dt>
+            Proveedor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proveedores.razon_social)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-block btn-warning" })
+    @Html.ActionLink("Regresar", "Index","", new { @class = "btn btn-block btn-info" })
 </p>

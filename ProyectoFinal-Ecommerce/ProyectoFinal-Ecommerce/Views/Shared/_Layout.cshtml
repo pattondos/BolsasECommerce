@@ -46,10 +46,10 @@
                             {
 
                                 if (us.role_id == 2 || us.role_id == 6)
-                                    {
-                                        @Html.ActionLink(" FINANZAS", "Index", "Finanzas", new { area = "" }, new { @class = "glyphicon glyphicon-th-list" })
-                                        <hr />
-                                    }
+                                {
+                                    @Html.ActionLink(" FINANZAS", "Index", "Finanzas", new { area = "" }, new { @class = "glyphicon glyphicon-th-list" })
+                                    <hr />
+                                }
 
                                 if (us.role_id == 2 || us.role_id == 3)
                                 {
@@ -63,6 +63,18 @@
                                     <hr />
                                 }
 
+                                if (us.role_id == 2 || us.role_id == 3)
+                                {
+                                    @Html.ActionLink(" DEVOLUCIONES", "Index", "SolicitudesDevoluciones", new { area = "" }, new { @class = "	glyphicon glyphicon-tags" })
+                                    <hr />
+                                }
+
+                                if (us.role_id == 2 || us.role_id == 3)
+                                {
+                                    @Html.ActionLink(" OFERTAS", "Index", "SolicitudesOfertas", new { area = "" }, new { @class = "	glyphicon glyphicon-tags" })
+                                    <hr />
+                                }
+
                                 if (us.role_id == 2 || us.role_id == 4)
                                 {
                                     @Html.ActionLink(" PROVEEDORES", "Index", "Proveedores", new { area = "" }, new { @class = "glyphicon glyphicon-bishop" })
@@ -70,10 +82,10 @@
                                 }
 
                                 @*if (us.role_id == 2 || us.role_id == 5)
-                                    {
-                                        @Html.ActionLink(" EMBARQUE", "Index", "Embarque", new { area = "" }, new { @class = "glyphicon glyphicon-plane" })
-                                        <hr />
-                                    }*@
+                {
+                    @Html.ActionLink(" EMBARQUE", "Index", "Embarque", new { area = "" }, new { @class = "glyphicon glyphicon-plane" })
+                    <hr />
+                }*@
 
                                 if (us.role_id == 2 || us.role_id == 4)
                                 {
@@ -116,7 +128,7 @@
     <br />
     <footer>
         <p align="center">&copy; @DateTime.Now.Year</p>
-        <p align="center">SMOOTHIE E-COMMERCE</p>
+        <p align="center">IMBOLSA E-COMMERCE</p>
     </footer>
 
 

@@ -58,19 +58,21 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Id_Cliente" Type="int" />
     <Property Name="Id_Producto" Type="int" />
     <Property Name="PrecioVenta" Type="float" Nullable="false" />
     <Property Name="Devolucion" Type="float" Nullable="false" />
     <Property Name="Descripcion" Type="text" />
     <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Id_Proveedor" Type="int" />
+    <Property Name="Id_Venta" Type="int" />
   </EntityType>
   <EntityType Name="SolicitudesOfertas">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Id_Producto" Type="int" />
     <Property Name="PrecioActual" Type="float" Nullable="false" />
     <Property Name="Descripcion" Type="text" />
@@ -117,7 +119,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Solicitud__Id_Cl__31B762FC">
+  <Association Name="FK__Solicitud__Id_Cl__3D2915A8">
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
@@ -159,7 +161,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Solicitud__Id_Pr__32AB8735">
+  <Association Name="FK__Solicitud__Id_Pr__3E1D39E1">
     <End Role="Productos" Type="Self.Productos" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
@@ -173,7 +175,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Solicitud__Id_Pr__3587F3E0">
+  <Association Name="FK__Solicitud__Id_Pr__3F115E1A">
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SolicitudesDevoluciones" Type="Self.SolicitudesDevoluciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SolicitudesDevoluciones">
+        <PropertyRef Name="Id_Proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Solicitud__Id_Pr__43D61337">
     <End Role="Productos" Type="Self.Productos" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
@@ -200,7 +216,7 @@
       <End Role="Proveedores" EntitySet="Proveedores" />
       <End Role="PagoProveedores" EntitySet="PagoProveedores" />
     </AssociationSet>
-    <AssociationSet Name="FK__Solicitud__Id_Cl__31B762FC" Association="Self.FK__Solicitud__Id_Cl__31B762FC">
+    <AssociationSet Name="FK__Solicitud__Id_Cl__3D2915A8" Association="Self.FK__Solicitud__Id_Cl__3D2915A8">
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="SolicitudesDevoluciones" EntitySet="SolicitudesDevoluciones" />
     </AssociationSet>
@@ -212,11 +228,15 @@
       <End Role="Proveedores" EntitySet="Proveedores" />
       <End Role="SolicitudesCompras" EntitySet="SolicitudesCompras" />
     </AssociationSet>
-    <AssociationSet Name="FK__Solicitud__Id_Pr__32AB8735" Association="Self.FK__Solicitud__Id_Pr__32AB8735">
+    <AssociationSet Name="FK__Solicitud__Id_Pr__3E1D39E1" Association="Self.FK__Solicitud__Id_Pr__3E1D39E1">
       <End Role="Productos" EntitySet="Productos" />
       <End Role="SolicitudesDevoluciones" EntitySet="SolicitudesDevoluciones" />
     </AssociationSet>
-    <AssociationSet Name="FK__Solicitud__Id_Pr__3587F3E0" Association="Self.FK__Solicitud__Id_Pr__3587F3E0">
+    <AssociationSet Name="FK__Solicitud__Id_Pr__3F115E1A" Association="Self.FK__Solicitud__Id_Pr__3F115E1A">
+      <End Role="Proveedores" EntitySet="Proveedores" />
+      <End Role="SolicitudesDevoluciones" EntitySet="SolicitudesDevoluciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Solicitud__Id_Pr__43D61337" Association="Self.FK__Solicitud__Id_Pr__43D61337">
       <End Role="Productos" EntitySet="Productos" />
       <End Role="SolicitudesOfertas" EntitySet="SolicitudesOfertas" />
     </AssociationSet>

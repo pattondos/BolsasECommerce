@@ -13,7 +13,7 @@ namespace ProyectoFinal_Ecommerce.Controllers
     [Authorize]
     public class SolicitudesDevolucionesController : Controller
     {
-        
+
         private EntitiesBolsas1 db = new EntitiesBolsas1();
 
         // GET: SolicitudesDevoluciones
@@ -43,6 +43,8 @@ namespace ProyectoFinal_Ecommerce.Controllers
         {
             ViewBag.Id_Producto = new SelectList(db.Productos, "id", "nombre");
             ViewBag.Id_Cliente = new SelectList(db.Usuarios, "id", "nombre");
+            ViewBag.Id_Proveedor = new SelectList(db.Proveedores, "id", "razon_social");
+
             return View();
         }
 
@@ -51,7 +53,7 @@ namespace ProyectoFinal_Ecommerce.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Id_Cliente,Id_Producto,PrecioVenta,Devolucion,Descripcion,Status")] SolicitudesDevoluciones solicitudesDevoluciones)
+        public ActionResult Create([Bind(Include = "Id,Id_Cliente,Id_Producto,PrecioVenta,Devolucion,Descripcion,Status,Id_Proveedor,Id_Venta")] SolicitudesDevoluciones solicitudesDevoluciones)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +64,7 @@ namespace ProyectoFinal_Ecommerce.Controllers
 
             ViewBag.Id_Producto = new SelectList(db.Productos, "id", "nombre", solicitudesDevoluciones.Id_Producto);
             ViewBag.Id_Cliente = new SelectList(db.Usuarios, "id", "nombre", solicitudesDevoluciones.Id_Cliente);
+            ViewBag.Id_Proveedor = new SelectList(db.Proveedores, "id", "razon_social", solicitudesDevoluciones.Id_Proveedor);
             return View(solicitudesDevoluciones);
         }
 
@@ -79,6 +82,7 @@ namespace ProyectoFinal_Ecommerce.Controllers
             }
             ViewBag.Id_Producto = new SelectList(db.Productos, "id", "nombre", solicitudesDevoluciones.Id_Producto);
             ViewBag.Id_Cliente = new SelectList(db.Usuarios, "id", "nombre", solicitudesDevoluciones.Id_Cliente);
+            ViewBag.Id_Proveedor = new SelectList(db.Proveedores, "id", "razon_social", solicitudesDevoluciones.Id_Proveedor);
             return View(solicitudesDevoluciones);
         }
 
@@ -87,7 +91,7 @@ namespace ProyectoFinal_Ecommerce.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Id_Cliente,Id_Producto,PrecioVenta,Devolucion,Descripcion,Status")] SolicitudesDevoluciones solicitudesDevoluciones)
+        public ActionResult Edit([Bind(Include = "Id,Id_Cliente,Id_Producto,PrecioVenta,Devolucion,Descripcion,Status,Id_Proveedor,Id_Venta")] SolicitudesDevoluciones solicitudesDevoluciones)
         {
             if (ModelState.IsValid)
             {
@@ -97,6 +101,7 @@ namespace ProyectoFinal_Ecommerce.Controllers
             }
             ViewBag.Id_Producto = new SelectList(db.Productos, "id", "nombre", solicitudesDevoluciones.Id_Producto);
             ViewBag.Id_Cliente = new SelectList(db.Usuarios, "id", "nombre", solicitudesDevoluciones.Id_Cliente);
+            ViewBag.Id_Proveedor = new SelectList(db.Proveedores, "id", "razon_social", solicitudesDevoluciones.Id_Proveedor);
             return View(solicitudesDevoluciones);
         }
 

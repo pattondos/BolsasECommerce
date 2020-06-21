@@ -7,9 +7,11 @@
 
 <h2>Solicitudes de ofertas de productos</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="row">
+    <div class="col-md-4 col-md-offset-8">
+        <a href="@Url.Action("Create", "SolicitudesOfertas")" class="btn btn-block btn-primary" style="font-size:1.5rem;">Nueva Oferta</a>
+    </div>
+</div>
 <table class="table">
     <tr>
         <th>
@@ -60,9 +62,9 @@
             @Html.DisplayFor(modelItem => item.Productos.nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-block btn-warning" })
+            @Html.ActionLink("Ver", "Details", new { id = item.Id }, new { @class = "btn btn-block btn-info" })
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-block btn-danger" })
         </td>
     </tr>
 }
