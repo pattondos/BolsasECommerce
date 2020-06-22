@@ -1,0 +1,28 @@
+﻿@using AlmacenEnvio.Models;
+@model Tuple<Order, IEnumerable<OrderDetail>>
+@{
+    ViewBag.Title = "Nuevas órdenes";
+    ViewBag.SubTitle = "Información de envío";
+}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="panel panel-primary col-md-8">
+        <div class="panel-heading" style="padding:5px 15px">
+            <h4>Asignación de información de envío</h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="">
+                   <form>
+
+                   </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-2"></div>
+<!--@Html.ActionLink("Regresar  ", "Index", "Order", new { @class = "btn btn-success" }) -->
+@Html.ActionLink("Regresar", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
+

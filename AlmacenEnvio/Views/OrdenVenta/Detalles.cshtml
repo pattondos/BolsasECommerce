@@ -1,0 +1,172 @@
+﻿@using AlmacenEnvio.Models;
+@model Tuple<Order, IEnumerable<OrderDetail>>
+@{
+    ViewBag.Title = "Orden";
+    ViewBag.SubTitle = "Detalles";
+}
+<div class="row">
+    <div class="col-md-2"></div>
+
+    <div class="col-md-2">
+        <dl class="dl-horizontal ">
+            <dt>
+                @Html.DisplayName("Número de orden: ")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Item1.OrderID)
+            </dd>
+            <dt>
+                @Html.DisplayName("Nombre del cliente: ")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Item1.Customer.First_Name)
+                @Html.DisplayFor(model => model.Item1.Customer.Last_Name)
+            </dd>
+            <dt>
+                @Html.DisplayName("Dirección del cliente : ")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Item1.Customer.Address1)
+            </dd>
+            <dt>
+                @Html.DisplayName("Número de contacto: ")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Item1.Customer.Mobile1)
+            </dd>
+
+        </dl>
+    </div>
+    <div class="col-md-3">
+        <dl class="dl-horizontal ">
+            <dt>
+                @Html.DisplayName("ID de pago: ")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Item1.PaymentID)
+            </dd>
+            <dt>
+                @Html.DisplayName("Número de envío: ")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Item1.ShippingID)
+            </dd>
+            <dt>
+                @Html.DisplayName("Dirección de envío: ")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Item1.ShippingDetail.Address)
+                @Html.DisplayFor(model => model.Item1.ShippingDetail.Province)
+                @Html.DisplayFor(model => model.Item1.ShippingDetail.City),
+                @Html.DisplayFor(model => model.Item1.ShippingDetail.PostCode)
+            </dd>
+            <dt>
+                @Html.DisplayName("Ordenado el día: ")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Item1.OrderDate)
+
+            </dd>
+
+        </dl>
+    </div>
+    <div class="col-md-4">
+        <dl class="dl-horizontal ">
+            <dt>
+                @Html.DisplayName("Envíado el día: ")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Item1.DispatchedDate)
+            </dd>
+            <dt>
+                @Html.DisplayName("Paquetería: ")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Item1.Notes)
+            </dd>
+            <dt>
+                @Html.DisplayName("Fecha estimada de entrega: ")
+            </dt>
+            <dd>
+
+                @Html.DisplayFor(model => model.Item1.DeliveryDate)
+            </dd>
+            <dt>
+                @Html.DisplayName("Estatus: ")
+            </dt>
+            <dd>
+                    @ViewBag.status
+
+            </dd>
+
+        </dl>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="panel panel-primary col-md-8">
+        <div class="panel-heading" style="padding:5px 15px">
+            <h4>Detalles de pedido</h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="">
+                    <div class="table-responsive col-md-off ">
+                        <table class="table table-hover ">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Nombre de producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio por unidad</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int i = 0;}
+                                @foreach (var item in Model.Item2)
+                                {
+                                    i++;
+                                    <tr>
+                                        <td>@i.ToString()</td>
+                                        <td>@item.Product.Name</td>
+                                        <td>@item.Quantity</td>
+                                        <td>$ @item.UnitPrice</td>
+                                        <td>$ @item.TotalAmount</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5"><h2></h2></td>
+
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th>@ViewBag.TotalItems</th>
+                                    <th></th>
+                                    <th>$ @ViewBag.Amount </th>
+                                </tr>
+                                <tr>
+                                    <th>Descuento</th>
+                                    <th colspan="3"></th>
+                                    <th>$ @ViewBag.Discount</th>
+                                </tr>
+                                <tr class="bg-info">
+                                    <th>Subtotal</th>
+                                    <th colspan="3"></th>
+                                    <th>$ @ViewBag.TAmount</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-2"></div>
+<!--@Html.ActionLink("Regresar  ", "Index", "Order", new { @class = "btn btn-success" }) -->
+@Html.ActionLink("Regresar", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-success" })
+

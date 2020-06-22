@@ -1,0 +1,105 @@
+﻿@model AlmacenEnvio.Models.Order
+
+@{
+    ViewBag.Title = "Nuevas órdenes";
+    ViewBag.SubTitle = "Entrega de mercancía";
+}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="panel panel-primary col-md-8">
+        <div class="panel-heading" style="padding:5px 15px">
+            <h4>Confirmación de datos para entrega</h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h3>¿Desea confirmar la entrega a paquetería?</h3>
+
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.OrderID)
+
+
+                        @Html.HiddenFor(model => model.CustomerID, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                        @Html.HiddenFor(model => model.CustomerID, new { htmlAttributes = new { @class = "form-control" } })
+
+
+
+                        @Html.HiddenFor(model => model.PaymentID, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.PaymentID, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.HiddenFor(model => model.ShippingID, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.ShippingID, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.HiddenFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.HiddenFor(model => model.Taxes, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.Taxes, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.HiddenFor(model => model.TotalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.TotalAmount, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.HiddenFor(model => model.isCompleted, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.isCompleted, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.HiddenFor(model => model.OrderDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.OrderDate, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.HiddenFor(model => model.DIspatched, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.DIspatched, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.HiddenFor(model => model.DIspatched, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.DIspatched, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.HiddenFor(model => model.DispatchedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.DispatchedDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+
+                        @Html.HiddenFor(model => model.Shipped, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.Shipped, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.HiddenFor(model => model.ShippingDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.ShippingDate, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.HiddenFor(model => model.Deliver, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.Deliver, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.HiddenFor(model => model.DeliveryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.HiddenFor(model => model.DeliveryDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+
+                        @Html.HiddenFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.HiddenFor(model => model.CancelOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(model => model.CancelOrder, new { htmlAttributes = new { @class = "form-control" } })
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <a href="@Url.Action("NuvasOrdenes", "OrdenVenta")" class="btn btn-danger">Cancelar</a>
+                                <input type="submit" value="Aceptar" class="btn btn-success" />
+                                @Html.ActionLink("Confirmar detalles del pedido", "Detalles", new { id = (Model.OrderID) }, new { @class = "btn btn-info" })
+
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+
+                        <div>
+                            @Html.ActionLink("Regresar", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-default" })
+
+                        </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-2"></div>
+<!--@Html.ActionLink("Regresar  ", "Index", "Order", new { @class = "btn btn-success" }) -->
