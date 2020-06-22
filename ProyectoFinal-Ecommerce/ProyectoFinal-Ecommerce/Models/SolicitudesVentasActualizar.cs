@@ -11,15 +11,36 @@ namespace ProyectoFinal_Ecommerce.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SolicitudesVentasActualizar
     {
+        [Required]
+        [Display(Name = "* No. de Orden:")]
         public int Id { get; set; }
+
+        [Required]
+        [Display(Name = "* Producto:")]
         public Nullable<int> Id_Producto { get; set; }
+
+        [Required]
+        [Display(Name = "* Cantidad en stock:")]
         public Nullable<int> Stock { get; set; }
+
+        [Required]
+        [Display(Name = "* Precio de compra:")]
         public Nullable<double> PrecioCompra { get; set; }
+
+        [Required]
+        [Display(Name = "* Precio actual de venta:")]
         public Nullable<double> PrecioActual { get; set; }
+
+        [Required]
+        [Display(Name = "* Nuevo precio de venta:")]
         public Nullable<double> NuevoPrecio { get; set; }
+
+        [Required]
+        [Display(Name = "* Status:")]
         public int Status { get; set; }
     
         public virtual Productos Productos { get; set; }

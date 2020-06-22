@@ -11,14 +11,32 @@ namespace ProyectoFinal_Ecommerce.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SolicitudesOfertas
     {
+        [Required]
+        [Display(Name = "* No. de Orden:")]
         public int Id { get; set; }
+
+        [Required]
+        [Display(Name = "* Producto:")]
         public Nullable<int> Id_Producto { get; set; }
+
+        [Required]
+        [Display(Name = "* Precio de venta:")]
         public double PrecioActual { get; set; }
+
+        [Required]
+        [Display(Name = "* Motivo de oferta del producto:")]
         public string Descripcion { get; set; }
+
+        [Required]
+        [Display(Name = "* Oferta:")]
         public double Oferta { get; set; }
+
+        [Required]
+        [Display(Name = "* Status:")]
         public int Status { get; set; }
     
         public virtual Productos Productos { get; set; }

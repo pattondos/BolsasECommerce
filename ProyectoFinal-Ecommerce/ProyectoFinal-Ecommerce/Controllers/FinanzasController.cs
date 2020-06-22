@@ -45,35 +45,21 @@ namespace ProyectoFinal_Ecommerce.Controllers
             }
         }
 
-        // GET: SolicitudesCompras/Edit/5
-        public ActionResult EditarEstado(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SolicitudesCompras solicitudesCompras = db.SolicitudesCompras.Find(id);
-            if (solicitudesCompras == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Id_Proveedor = new SelectList(db.Proveedores, "id", "razon_social", solicitudesCompras.Id_Proveedor);
-            return View(solicitudesCompras);
-        }
-
-        // POST: SolicitudesCompras/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditarEstado([Bind(Include = "Id,NuevoProducto,Cantidad,Id_Proveedor,Descripcion,Presupuesto,Status")] SolicitudesCompras solicitudesCompras)
+        public ActionResult EditarEstadoCompras(int id, int status)
         {
-            if (ModelState.IsValid)
+            if (((ProyectoFinal_Ecommerce.Models.Usuarios)Session["admin"]).role_id == 2 || ((ProyectoFinal_Ecommerce.Models.Usuarios)Session["admin"]).role_id == 6)
             {
-                db.Entry(solicitudesCompras).State = EntityState.Modified;
+                SolicitudesCompras solicitudesCompras = db.SolicitudesCompras.Find(id);
+
+                solicitudesCompras.Status = status;
+
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return RedirectToAction("VerSolicitudesCompras", "Finanzas");
             }
-            ViewBag.Id_Proveedor = new SelectList(db.Proveedores, "id", "razon_social", solicitudesCompras.Id_Proveedor);
-            return View(solicitudesCompras);
+
+            return RedirectToAction("Index", "Home");
         }
 
  /// 
@@ -93,10 +79,28 @@ namespace ProyectoFinal_Ecommerce.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
- /// 
- /// Este apartado es para las devoluciones
- /// 
- ///       
+
+        [HttpPost]
+        public ActionResult EditarEstadoActualizar(int id, int status)
+        {
+            if (((ProyectoFinal_Ecommerce.Models.Usuarios)Session["admin"]).role_id == 2 || ((ProyectoFinal_Ecommerce.Models.Usuarios)Session["admin"]).role_id == 6)
+            {
+                
+                SolicitudesVentasActualizar solicitudesVentas = db.SolicitudesVentasActualizar.Find(id);
+
+                solicitudesVentas.Status = status;
+
+                db.SaveChanges();
+
+                return RedirectToAction("VerSolicitudesActualizar", "Finanzas");
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+/// 
+/// Este apartado es para las devoluciones
+/// 
+///       
         // GET: Finanzas
         public ActionResult VerSolicitudesDevoluciones()
         {
@@ -109,6 +113,24 @@ namespace ProyectoFinal_Ecommerce.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+        }
+
+        [HttpPost]
+        public ActionResult EditarEstadoDevolucion(int id, int status)
+        {
+            if (((ProyectoFinal_Ecommerce.Models.Usuarios)Session["admin"]).role_id == 2 || ((ProyectoFinal_Ecommerce.Models.Usuarios)Session["admin"]).role_id == 6)
+            {
+                
+                SolicitudesDevoluciones solicitudesDevoluciones = db.SolicitudesDevoluciones.Find(id);
+
+                solicitudesDevoluciones.Status = status;
+
+                db.SaveChanges();
+
+                return RedirectToAction("VerSolicitudesActualizar", "Finanzas");
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 /// 
 /// Este apartado es para las ofertas de los productos
@@ -127,5 +149,24 @@ namespace ProyectoFinal_Ecommerce.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        [HttpPost]
+        public ActionResult EditarEstadoOferta(int id, int status)
+        {
+            if (((ProyectoFinal_Ecommerce.Models.Usuarios)Session["admin"]).role_id == 2 || ((ProyectoFinal_Ecommerce.Models.Usuarios)Session["admin"]).role_id == 6)
+            {
+
+                SolicitudesOfertas solicitudesOfertas = db.SolicitudesOfertas.Find(id);
+
+                solicitudesOfertas.Status = status;
+
+                db.SaveChanges();
+
+                return RedirectToAction("VerSolicitudesActualizar", "Finanzas");
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

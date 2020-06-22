@@ -5,29 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Solicitudes de compra de productos</h2>
+<h2 style="text-align:center">Solicitudes de compra de productos</h2>
 
-<table class="table">
-    <tr>
+<table class="table table-hover table-striped" style="margin-top:30px; text-align:center;">
+    <tr style="text-align:center;">
         <th>
-            @Html.DisplayNameFor(model => model.NuevoProducto)
+            Producto
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cantidad)
+            Cantidad a comprar
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            Descripción del nuevo producto
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Presupuesto)
+            Presupuesto solicitado
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            Proveedor
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Proveedores.razon_social)
+            Status
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -43,31 +42,76 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Presupuesto)
-            </td>
-            <td>
-                @switch (item.Status)
-                {
-                    case 1:
-                        <span class="alert-warning text-warning text-capitalize">Enviado</span>
-                        break;
-                    case 2:
-                        <span class="bg-success text-success text-capitalize">Aprobado</span>
-                        break;
-                    case 3:
-                        <span class="bg-danger text-danger text-capitalize">Rechazado</span>
-                        break;
-
-                }
+              $ @Html.DisplayFor(modelItem => item.Presupuesto)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Proveedores.razon_social)
             </td>
+           
+                @switch (item.Status)
+                {
+                    case 1:
+                        <td class="bg-primary text-primary text-capitalize">Enviado</td>
+                        break;
+                    case 2:
+                        <td class="bg-success text-success text-capitalize">Aprobado</td>
+                        break;
+                    case 3:
+                        <td class="bg-danger text-danger text-capitalize">Rechazado</td>
+                        break;
+
+                }
+                       
             <td>
-                @Html.ActionLink("Editar Estado", "EditarEstado", new { id = item.Id }) 
+                <a class="btn btn-warning" data-toggle="modal" data-target="#statusModal@(item.Id)">Actualizar Status</a>
             </td>
         </tr>
+
+        <div class="modal fade" id="statusModal@(item.Id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div>
+                <div>
+                    <div class="modal-dialog" role="document">
+                        @{
+                            using (Html.BeginForm("EditarEstadoCompras", "Finanzas", FormMethod.Post))
+                            {
+                        <div class="modal-content">
+                            <div>
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Actualizar Status de Solicitud</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="hidden" id="id" name="id" value="@item.Id" />
+                                    <label for="exampleFormControlSelect2">Estado de solicitud de producto</label>
+                                    <div>
+                                        <select class="form-control" id="status" name="status">
+                                            <option value="">Selecciona opcion</option>
+                                            <option value="2">Aprobado</option>
+                                            <option value="3">Rechazado</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <input class="btn btn-success" type="submit" value="Actualizar" />
+                            </div>
+                        </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
     }
-
 </table>
-
+<br/>
+<br/>
+<div class="container">
+    @Html.ActionLink("Regresar al panel","Index","Finanzas", new { @class="btn btn-primary"})
+</div>
