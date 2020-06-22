@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="BolsasModel.Productos" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BolsasModel.Proveedores" Width="1.5" PointX="5.75" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BolsasModel.SolicitudesCompras" Width="1.5" PointX="8" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BolsasModel.SolicitudesDevoluciones" Width="2" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="BolsasModel.SolicitudesDevoluciones" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="BolsasModel.SolicitudesOfertas" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BolsasModel.SolicitudesVentasActualizar" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BolsasModel.Usuarios" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
@@ -19,7 +19,6 @@
         <AssociationConnector Association="BolsasModel.FK__Solicitud__Id_Pr__3587F3E0" ManuallyRouted="false" />
         <AssociationConnector Association="BolsasModel.FK__Solicitud__Id_Pr__2EDAF651" ManuallyRouted="false" />
         <AssociationConnector Association="BolsasModel.FK__Solicitud__Id_Cl__31B762FC" ManuallyRouted="false" />
-        <AssociationConnector Association="BolsasModel.FK__Solicitud__Id_Pr__3F115E1A" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

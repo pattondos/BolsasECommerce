@@ -21,11 +21,8 @@ namespace ProyectoFinal_Ecommerce.Models
         public double Devolucion { get; set; }
         public string Descripcion { get; set; }
         public int Status { get; set; }
-        public Nullable<int> Id_Proveedor { get; set; }
-        public Nullable<int> Id_Venta { get; set; }
     
         public virtual Productos Productos { get; set; }
         public virtual Usuarios Usuarios { get; set; }
-        public virtual Proveedores Proveedores { get; set; }
     }
 }

@@ -19,7 +19,6 @@ namespace ProyectoFinal_Ecommerce.Models
         {
             this.PagoProveedores = new HashSet<PagoProveedores>();
             this.SolicitudesCompras = new HashSet<SolicitudesCompras>();
-            this.SolicitudesDevoluciones = new HashSet<SolicitudesDevoluciones>();
         }
     
         public int id { get; set; }
@@ -34,7 +33,5 @@ namespace ProyectoFinal_Ecommerce.Models
         public virtual ICollection<PagoProveedores> PagoProveedores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SolicitudesCompras> SolicitudesCompras { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SolicitudesDevoluciones> SolicitudesDevoluciones { get; set; }
     }
 }

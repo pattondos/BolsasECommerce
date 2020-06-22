@@ -5,11 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Borrar solicitud de Devolución</h2>
+<h2>Borrar solicitud</h2>
 
-<h3>¿Quieres borrar esta solicitud?</h3>
+<h3>¿Deseas Borrar esta solicitud?</h3>
 <div>
-    <h4>Solicitud de Devoluciones</h4>
+    <h4>SolicitudesDevoluciones</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -45,14 +45,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Id_Venta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Id_Venta)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Productos.nombre)
         </dt>
 
@@ -68,23 +60,15 @@
             @Html.DisplayFor(model => model.Usuarios.nombre)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Proveedores.razon_social)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Proveedores.razon_social)
-        </dd>
-
     </dl>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Eliminar" class="btn btn-block btn-default" /> 
-        @Html.ActionLink("Regresar", "Index", "", new { @class = "btn btn-block btn-info" })
-    </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
     }
 </div>

@@ -62,8 +62,6 @@
     <EntitySetMapping Name="SolicitudesDevoluciones">
       <EntityTypeMapping TypeName="BolsasModel.SolicitudesDevoluciones">
         <MappingFragment StoreEntitySet="SolicitudesDevoluciones">
-          <ScalarProperty Name="Id_Venta" ColumnName="Id_Venta" />
-          <ScalarProperty Name="Id_Proveedor" ColumnName="Id_Proveedor" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
           <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />

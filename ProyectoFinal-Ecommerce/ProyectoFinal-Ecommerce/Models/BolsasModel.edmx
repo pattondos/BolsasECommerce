@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BolsasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BolsasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PagoProveedores">
           <Key>
             <PropertyRef Name="Id" />
@@ -63,21 +63,19 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Id_Cliente" Type="int" />
           <Property Name="Id_Producto" Type="int" />
           <Property Name="PrecioVenta" Type="float" Nullable="false" />
           <Property Name="Devolucion" Type="float" Nullable="false" />
           <Property Name="Descripcion" Type="text" />
           <Property Name="Status" Type="int" Nullable="false" />
-          <Property Name="Id_Proveedor" Type="int" />
-          <Property Name="Id_Venta" Type="int" />
         </EntityType>
         <EntityType Name="SolicitudesOfertas">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Id_Producto" Type="int" />
           <Property Name="PrecioActual" Type="float" Nullable="false" />
           <Property Name="Descripcion" Type="text" />
@@ -124,7 +122,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Solicitud__Id_Cl__3D2915A8">
+        <Association Name="FK__Solicitud__Id_Cl__31B762FC">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -166,7 +164,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Solicitud__Id_Pr__3E1D39E1">
+        <Association Name="FK__Solicitud__Id_Pr__32AB8735">
           <End Role="Productos" Type="Self.Productos" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -180,21 +178,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Solicitud__Id_Pr__3F115E1A">
-          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="SolicitudesDevoluciones" Type="Self.SolicitudesDevoluciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proveedores">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="SolicitudesDevoluciones">
-              <PropertyRef Name="Id_Proveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Solicitud__Id_Pr__43D61337">
+        <Association Name="FK__Solicitud__Id_Pr__3587F3E0">
           <End Role="Productos" Type="Self.Productos" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -221,7 +205,7 @@
             <End Role="Proveedores" EntitySet="Proveedores" />
             <End Role="PagoProveedores" EntitySet="PagoProveedores" />
           </AssociationSet>
-          <AssociationSet Name="FK__Solicitud__Id_Cl__3D2915A8" Association="Self.FK__Solicitud__Id_Cl__3D2915A8">
+          <AssociationSet Name="FK__Solicitud__Id_Cl__31B762FC" Association="Self.FK__Solicitud__Id_Cl__31B762FC">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="SolicitudesDevoluciones" EntitySet="SolicitudesDevoluciones" />
           </AssociationSet>
@@ -233,20 +217,17 @@
             <End Role="Proveedores" EntitySet="Proveedores" />
             <End Role="SolicitudesCompras" EntitySet="SolicitudesCompras" />
           </AssociationSet>
-          <AssociationSet Name="FK__Solicitud__Id_Pr__3E1D39E1" Association="Self.FK__Solicitud__Id_Pr__3E1D39E1">
+          <AssociationSet Name="FK__Solicitud__Id_Pr__32AB8735" Association="Self.FK__Solicitud__Id_Pr__32AB8735">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="SolicitudesDevoluciones" EntitySet="SolicitudesDevoluciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__Solicitud__Id_Pr__3F115E1A" Association="Self.FK__Solicitud__Id_Pr__3F115E1A">
-            <End Role="Proveedores" EntitySet="Proveedores" />
-            <End Role="SolicitudesDevoluciones" EntitySet="SolicitudesDevoluciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Solicitud__Id_Pr__43D61337" Association="Self.FK__Solicitud__Id_Pr__43D61337">
+          <AssociationSet Name="FK__Solicitud__Id_Pr__3587F3E0" Association="Self.FK__Solicitud__Id_Pr__3587F3E0">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="SolicitudesOfertas" EntitySet="SolicitudesOfertas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BolsasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -297,7 +278,6 @@
           <Property Name="stat" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PagoProveedores" Relationship="Self.FK__PagoProve__Id_Pr__29221CFB" FromRole="Proveedores" ToRole="PagoProveedores" />
           <NavigationProperty Name="SolicitudesCompras" Relationship="Self.FK__Solicitud__Id_Pr__2EDAF651" FromRole="Proveedores" ToRole="SolicitudesCompras" />
-          <NavigationProperty Name="SolicitudesDevoluciones" Relationship="BolsasModel.FK__Solicitud__Id_Pr__3F115E1A" FromRole="Proveedores" ToRole="SolicitudesDevoluciones" />
         </EntityType>
         <EntityType Name="SolicitudesCompras">
           <Key>
@@ -325,9 +305,6 @@
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Productos" Relationship="Self.FK__Solicitud__Id_Pr__32AB8735" FromRole="SolicitudesDevoluciones" ToRole="Productos" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK__Solicitud__Id_Cl__31B762FC" FromRole="SolicitudesDevoluciones" ToRole="Usuarios" />
-          <Property Name="Id_Proveedor" Type="Int32" />
-          <Property Name="Id_Venta" Type="Int32" />
-          <NavigationProperty Name="Proveedores" Relationship="BolsasModel.FK__Solicitud__Id_Pr__3F115E1A" FromRole="SolicitudesDevoluciones" ToRole="Proveedores" />
         </EntityType>
         <EntityType Name="SolicitudesOfertas">
           <Key>
@@ -486,25 +463,7 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="SolicitudesDevoluciones" EntitySet="SolicitudesDevoluciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__Solicitud__Id_Pr__3F115E1A" Association="BolsasModel.FK__Solicitud__Id_Pr__3F115E1A">
-            <End Role="Proveedores" EntitySet="Proveedores" />
-            <End Role="SolicitudesDevoluciones" EntitySet="SolicitudesDevoluciones" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK__Solicitud__Id_Pr__3F115E1A">
-          <End Type="BolsasModel.Proveedores" Role="Proveedores" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="BolsasModel.SolicitudesDevoluciones" Role="SolicitudesDevoluciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proveedores">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="SolicitudesDevoluciones">
-              <PropertyRef Name="Id_Proveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -572,8 +531,6 @@
           <EntitySetMapping Name="SolicitudesDevoluciones">
             <EntityTypeMapping TypeName="BolsasModel.SolicitudesDevoluciones">
               <MappingFragment StoreEntitySet="SolicitudesDevoluciones">
-                <ScalarProperty Name="Id_Venta" ColumnName="Id_Venta" />
-                <ScalarProperty Name="Id_Proveedor" ColumnName="Id_Proveedor" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
                 <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
