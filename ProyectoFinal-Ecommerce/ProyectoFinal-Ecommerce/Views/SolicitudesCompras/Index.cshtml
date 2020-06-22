@@ -5,38 +5,46 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Solicitudes de compra de productos</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<h2 class="text-center">Solicitudes de compra de productos</h2>
+<br />
+<br />
+<br />
+<table class="table table-hover table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NuevoProducto)
+            No. de orden
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cantidad)
+            Producto nuevo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            Proveedor
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Presupuesto)
+            Cantidad a comprar
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            Descripción del nuevo producto
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Proveedores.razon_social)
+            Presupuesto solicitado
         </th>
-        <th></th>
+        <th>
+            Status
+        </th>
+
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.NuevoProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proveedores.razon_social)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Cantidad)
@@ -62,15 +70,20 @@
 
             }
         </td>
+        
         <td>
-            @Html.DisplayFor(modelItem => item.Proveedores.razon_social)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Borrar solicitud", "Delete", new { id=item.Id }, new { @class = "btn btn-danger"})
         </td>
     </tr>
 }
 
 </table>
+<br/>
+<br/>
+<div class="container">
+    <div class="container-fluid">
+
+        @Html.ActionLink("Nueva solicitud", "Create", "SolicitudesCompras", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Ventas", "AllVentas", "Ventas", new { }, new { @class = "btn btn-info" })
+    </div>
+</div>

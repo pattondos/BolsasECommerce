@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Final_Ecommerce.Models.DAL.Ventas>
 @{
-    ViewBag.Title = "Devoluciones";
+    ViewBag.Title = "Historial de compras";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -26,14 +26,17 @@
                 foreach (Final_Ecommerce.Models.DAL.Ventas item in Model)
                 {
                     string fecha = item.fecha.ToString("dddd, dd MMMM yyyy").ToUpper();
-                    string status = "En proceso";
+                    string status = " ";
                     switch (item.stat)
                     {
+                        case 0:
+                            status = "En proceso";
+                            break;
                         case 1:
-                            status = "Entregada";
+                            status = "En ruta";
                             break;
                         case 2:
-                            status = "En camino";
+                            status = "Entregado";
                             break;
                     }
                     <tr>

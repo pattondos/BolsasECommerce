@@ -60,9 +60,13 @@
     </tbody>
 </table>
 <br />
-<div class="col-md-4 col-md-offset-4">
-    @Html.ActionLink("Generar Compras", "GenerarAllCompras", new {  }, new { @class = "btn btn-block btn-success" })
-    @Html.ActionLink("solicitudes de compra","Index", "SolicitudesCompras", new {  }, new { @class = "btn btn-block btn-success" })
-    @Html.ActionLink("Pago a proveedores","Index", "PagoProveedores", new {  }, new { @class = "btn btn-block btn-success" })
+<div class="container">
+    <div class="container-fluid">
+
+        @Html.ActionLink("Generar Compras", "GenerarAllCompras", new { }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Solicitudes de compra", "Index", "SolicitudesCompras", new { }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Pago a proveedores", "Index", "PagoProveedores", new { }, new { @class = "btn btn-primary" })
+    </div>
+
 </div>
 <br />

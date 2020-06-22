@@ -47,13 +47,19 @@
                     @switch (item.role_id)
                     {
                         case 2:
-                    <span>Super Admin</span>
+                            <span>Super Admin</span>
                             break;
                         case 3:
-                    <span>Ventas</span>
+                            <span>Ventas</span>
                             break;
                         case 4:
-                    <span>Compras</span>
+                            <span>Compras</span>
+                            break;
+                        case 5:
+                            <span>Embarques</span>
+                            break;
+                        case 6:
+                            <span>Finanzas</span>
                             break;
                     }
                 </td>
@@ -63,14 +69,16 @@
                 <td style="text-transform:uppercase; text-align:center">
                     @if (item.role_id != 2)
                     {
-                        @Html.ActionLink("Eliminar", "EliminarUsuarios", new { item.id }, new { @class = "btn btn-danger" })
+                                            @Html.ActionLink("Eliminar", "EliminarUsuarios", new { item.id }, new { @class = "btn btn-danger" })
                     }
-                    @Html.ActionLink("Editar", "Perfil", new { item.id }, new { @class = "btn btn-warning" })
-                </td>
-            </tr>
+                                        @Html.ActionLink("Editar", "Perfil", new { item.id }, new { @class = "btn btn-warning" })
+                                    </td>
+
+
+                                </tr>
         }
 
-    }
+                                }
 </table>
 <br />
 <br />

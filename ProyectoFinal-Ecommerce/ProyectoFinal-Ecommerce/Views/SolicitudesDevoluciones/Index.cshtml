@@ -5,72 +5,87 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Solicitudes para devolucion de productos</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<h2 class="text-center">Solicitudes para devolucion de productos</h2>
+<br />
+<br />
+<br />
+<table class="table table-hover table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PrecioVenta)
+            No. de orden
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Devolucion)
+            Nombre del cliente
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            Producto
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            Precio de venta
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Productos.nombre)
+            Capital a devolver
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Usuarios.nombre)
+            Descripción
         </th>
+        <th>
+            Status
+        </th>
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrecioVenta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Devolucion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @switch (item.Status)
-            {
-                case 1:
-                    <span class="bg-warning text-warning text-capitalize">Enviado</span>
-                    break;
-                case 2:
-                    <span class="bg-success text-success text-capitalize">Aprobado</span>
-                    break;
-                case 3:
-                    <span class="bg-danger text-danger text-capitalize">Rechazado</span>
-                    break;
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuarios.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Productos.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Devolucion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @switch (item.Status)
+                {
+                    case 1:
+                        <span class="bg-warning text-warning text-capitalize">Enviado</span>
+                        break;
+                    case 2:
+                        <span class="bg-success text-success text-capitalize">Aprobado</span>
+                        break;
+                    case 3:
+                        <span class="bg-danger text-danger text-capitalize">Rechazado</span>
+                        break;
 
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Productos.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuarios.nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+                }
+            </td>
 
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 </table>
+<br />
+<br />
+<div class="container">
+    <div class="container-fluid">
+
+        @Html.ActionLink("Nueva solicitud", "Create", "SolicitudesDevoluciones", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Ventas", "AllVentas","Ventas", new { },new { @class = "btn btn-info" })
+
+    </div>
+</div>

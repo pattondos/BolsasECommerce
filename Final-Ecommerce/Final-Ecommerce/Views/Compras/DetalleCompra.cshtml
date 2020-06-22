@@ -1,9 +1,15 @@
 ﻿@model Final_Ecommerce.Models.DetalleCompraModel
+@using Final_Ecommerce.Repository
+@using Final_Ecommerce.Models.DAL
+
 @{
     ViewBag.Title = "Detalle de Compra";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
-
+<head>
+    <link href="~/Content/barraestado.css" rel="stylesheet" type="text/css"/>
+</head>
 <div class="breadcrumbs">
     <ul>
         <li>@Html.ActionLink("Historial de compras", "HistorialCompras", "Compras") / </li>
@@ -16,82 +22,141 @@
         Detalle de compra
     </h2>
     <br />
+    
     <div class="row">
+
         <div class="col-md-4 col-md-offset-8">
             <strong><span>Fecha de compra: </span></strong><span>@Model.venta.fecha.ToString("dddd, dd MMMM yyyy").ToUpper()</span>
         </div>
-    </div>
-    <h4>
-        Productos comprados
-    </h4>
-    <table class="table" id="compra-table">
-        <thead>
-            <tr>
-                <th></th>
-                <th style="text-align: center !important;">Producto</th>
-                <th style="text-align: center !important;">Cantidad</th>
-                <th style="text-align: center !important;">Precio Unitario</th>
-                <th style="text-align: center !important;">Subtotal</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Final_Ecommerce.Models.CarritoModel item in Model.products)
+
+        @{
+            String status1 = "";
+            String status2 = "";
+            String status3 = "";
+            switch (Model.venta.stat)
             {
-                decimal t = item.Precio_venta * item.Cantidad;
-                <tr>
-                    <td><img src="~/images/@item.Img" alt="Batido 1" width="30" /></td>
-                    <td>@item.Nombre</td>
-                    <td>@item.Cantidad</td>
-                    <td>$ @item.Precio_venta</td>
-                    <td>$ @t</td>
-                    <td style="color: red !important;">
-                        <a href="@Url.Action("InfoProducto", "Productos", new { id = item.Id_producto })" class="info" style="color: deepskyblue !important;"><i class="fa danger fa-eye"></i> Ver</a>
-                    </td>
-                </tr>
+                case 0:
+                    status1 = "success";
+                    status2 = "danger";
+                    status3 = "danger";
+                    break;
+                case 1:
+                    status1 = "success";
+                    status2 = "success";
+                    status3 = "danger";
+                    break;
+                case 2:
+                    status1 = "success";
+                    status2 = "success";
+                    status3 = "success";
+                    break;
+
             }
-        </tbody>
-    </table>
-    <div class="block text-center">
-        <h3></h3>
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="block-inside">
-                    <div class="row">
-                        <div class="col-md-5 col-md-offset-1" style="text-align: right;">
-                            <p style="font-weight: bold;">SUBTOTAL : </p>
-                        </div>
-                        <div class="col-md-4" style="text-align: right;">
-                            <p style="font-weight: bold;">$ @Model.venta.sub_total </p>
+            <div >
+
+                <div class="row">
+                    <div class="col-md-12">
+                     
+                        <div style="display:inline-block;width:100%;overflow-y:auto; margin-top:5px;">
+                            <ul class="timeline timeline-horizontal">
+
+                                <li class="timeline-item">
+                                    <div class="timeline-badge @(status1)"><i class="glyphicon glyphicon-check"></i></div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">En proceso</h4>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li class="timeline-item">
+                                    <div class="timeline-badge @(status2)"><i class="glyphicon glyphicon-check"></i></div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">En ruta</h4>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li class="timeline-item">
+                                    <div class="timeline-badge @(status3)"><i class="glyphicon glyphicon-check"></i></div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Entregado</h4>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+
+
+                            </ul>
                         </div>
                     </div>
-                    @*<div class="row">
-                        <div class="col-md-5 col-md-offset-1" style="text-align: right;">
-                            <p style="font-weight: bold;">IVA : </p>
+                </div>
+
+            </div>
+        }
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h4>
+            Productos comprados
+        </h4>
+        <table class="table" id="compra-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align: center !important;">Producto</th>
+                    <th style="text-align: center !important;">Cantidad</th>
+                    <th style="text-align: center !important;">Precio Unitario</th>
+                    <th style="text-align: center !important;">Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Final_Ecommerce.Models.CarritoModel item in Model.products)
+                {
+                    decimal t = item.Precio_venta * item.Cantidad;
+                    <tr>
+                        <td><img src="~/images/@item.Img" alt="Batido 1" width="30" /></td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Cantidad</td>
+                        <td>$ @item.Precio_venta</td>
+                        <td>$ @t</td>
+                        <td style="color: red !important;">
+                            <a href="@Url.Action("InfoProducto", "Productos", new { id = item.Id_producto })" class="info" style="color: deepskyblue !important;"><i class="fa danger fa-eye"></i> Ver</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="block text-center">
+            <h3></h3>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="block-inside">
+                        <div class="row">
+                            <div class="col-md-5 col-md-offset-1" style="text-align: right;">
+                                <p style="font-weight: bold;">SUBTOTAL : </p>
+                            </div>
+                            <div class="col-md-4" style="text-align: right;">
+                                <p style="font-weight: bold;">$ @Model.venta.sub_total </p>
+                            </div>
                         </div>
-                        <div class="col-md-4" style="text-align: right;">
-                            <p style="font-weight: bold;">$ @Model.venta.iva </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5 col-md-offset-1" style="text-align: right;">
-                            <p style="font-weight: bold;">TOTAL : </p>
-                        </div>
-                        <div class="col-md-4" style="text-align: right;">
-                            <p style="font-weight: bold;">$ @Model.venta.total </p>
-                        </div>
-                    </div>*@
-                    <br />
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            @*@Html.ActionLink("Únete", "Registrar", "Registro")*@
-                            <a href="/Compras/HistorialCompras" class="btn btn-block btn-success" style="font-size:1.5rem;">
-                                Regresar
-                            </a>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <a href="/Compras/HistorialCompras" class="btn btn-block btn-success" style="font-size:1.5rem;">
+                                    Regresar
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

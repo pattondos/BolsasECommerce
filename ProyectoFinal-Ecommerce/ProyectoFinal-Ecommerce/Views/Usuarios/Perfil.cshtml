@@ -55,7 +55,7 @@
                                     <div class="form-group">
                                         <div id="contacts_email" class="field text-field">
                                             @Html.LabelFor(m => m.correo, new { @class = "control-label" })
-                                            @Html.TextBoxFor(m => m.correo, new { @class = "text form-control", @readonly = "true" })
+                                            @Html.TextBoxFor(m => m.correo, new { @class = "text form-control"})
                                             @Html.ValidationMessageFor(m => m.correo, "", new { @class = "text-danger" })
                                         </div>
                                     </div>

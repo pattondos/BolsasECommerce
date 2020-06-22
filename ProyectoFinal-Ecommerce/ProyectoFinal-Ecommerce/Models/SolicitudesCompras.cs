@@ -11,15 +11,35 @@ namespace ProyectoFinal_Ecommerce.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SolicitudesCompras
     {
+        [Required]
+        [Display(Name ="* No. de orden:")]
         public int Id { get; set; }
+
+        [Required]
+        [Display(Name = "* Producto nuevo:")]
         public string NuevoProducto { get; set; }
+
+        [Required]
+        [Display(Name = "* Cantidad a comprar:")]
         public int Cantidad { get; set; }
+
+        [Required]
+        [Display(Name = "* Proveedor:")]
         public Nullable<int> Id_Proveedor { get; set; }
+
+        [Required]
+        [Display(Name = "* Descripción del nuevo producto:")]
         public string Descripcion { get; set; }
+
+        [Required]
+        [Display(Name = "* Presupuesto solicitado:")]
         public double Presupuesto { get; set; }
+        [Required]
+        [Display(Name = "* Status:")]
         public int Status { get; set; }
     
         public virtual Proveedores Proveedores { get; set; }

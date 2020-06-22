@@ -44,10 +44,50 @@
                     <td>$ @item.total</td>
                     <td>@status</td>
                     <td style="color: red !important;">
+                       
                         <a href="@Url.Action("DetalleVenta", "Ventas", new { id = item.id })" class="info" style="color: deepskyblue !important;"><i class="fa info fa-eye"></i> Detalles</a>
+                        
+                        <a class="btn btn-warning" data-toggle="modal" data-target="#statusModal@(item.id)">Actualizar Status</a>
                     </td>
+
                 </tr>
+                <div class="modal fade" id="statusModal@(item.id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div>
+                        <div class="modal-dialog" role="document">
+                            @{
+                                using (Html.BeginForm("updateStatus", "Ventas", FormMethod.Post))
+                                {
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Actualizar Status de Envío</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <input type="hidden" id="id" name="id" value="@item.id" />
+                                                <label for="exampleFormControlSelect2">Estado de envío de producto</label>
+                                                <select class="form-control" id="status" name="status">
+                                                    <option value="0">En proceso</option>
+                                                    <option value="1">En ruta</option>
+                                                    <option value="2">Entregado</option>
+                                                  
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <input class="btn btn-success" type="submit" value="Actualizar" />
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
             }
+
         }
         else
         {
@@ -60,3 +100,13 @@
     </tbody>
 </table>
 <br />
+<div class="container" style="display:flex; align-content:center">
+    <div class="container-fluid">
+        @Html.ActionLink("Solicitudes de devoluciones", "Index", "SolicitudesDevoluciones", new { }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Solicitudes de precios", "Index", "SolicitudesVentasActualizars", new { }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Solicitudes de ofertas", "Index", "SolicitudesOfertas", new { }, new { @class = "btn btn-success" })
+
+    </div>
+    
+</div>
+

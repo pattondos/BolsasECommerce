@@ -65,5 +65,16 @@ namespace ProyectoFinal_Ecommerce.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult updateStatus(int id, int status)
+        {
+            Ventas v = _unitToWork.GetRepositoryInstance<Ventas>().GetFirstorDefaultByParameter(i => i.id == id);
+            v.stat = status;
+            _unitToWork.GetRepositoryInstance<Ventas>().Update(v);
+             return RedirectToAction("AllVentas", "Ventas");
+             
+            //return RedirectToAction("AllVentas", "Ventas");           
+        }
+
     }
 }
