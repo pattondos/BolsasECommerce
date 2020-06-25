@@ -1,0 +1,157 @@
+﻿@model IEnumerable<ProyectoFinal_Ecommerce.Models.SolicitudesCambioPrecio>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Solicitudes de actualizaciones de precio por oferta</h2>
+<br />
+<br />
+<table class="table table-hover table-striped">
+    <tr>
+        <th>
+            Fecha de envío
+        </th>
+        <th>
+            No. de orden
+        </th>
+        <th>
+            Producto
+        </th>
+        <th>
+            Precio actual
+        </th>
+        <th>
+            Razón de actualización
+        </th>
+        <th>
+            Porcentaje de descuento
+        </th>
+        <th>
+            Nuevo Precio
+        </th>
+
+        <th>
+            Status
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        float desc = 0;
+
+        if (item.Id_TipoCambio == 2 && item.Status == 1)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaActualizacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Productos.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioActual)
+                </td>
+                <td class="bg-info">
+                    @Html.DisplayFor(modelItem => item.CambioPrecioVenta.TipoCambio)
+                </td>
+                @if (item.Id_TipoCambio != 2)
+                {
+                    <td class="bg-info text-center">
+                        0 %
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descuento) %
+                    </td>
+                }
+
+                <td>
+                    @{
+                        desc += (float)(item.PrecioActual - ((item.PrecioActual * item.Descuento) / 100));
+                    }
+                    @desc
+                </td>
+
+                @switch (item.Status)
+                {
+                    case 1:
+                        <td class="bg- bg-primary text-capitalize">Recibido</td>
+                        break;
+                    case 2:
+                        <td class="bg-success text-success text-capitalize">Aprobado</td>
+                        break;
+                    case 3:
+                        <td class="bg-danger text-danger text-capitalize">Rechazado</td>
+                        break;
+                }
+                        <td>
+                            @if (item.Status == 1)
+                            {
+                                @Html.ActionLink("Ver más", "DetailPrecio", new { id = item.Id }, new { @class = "btn btn-info" })
+                            }
+                            <a class="btn btn-warning" data-toggle="modal" data-target="#statusModal@(item.Id)">Deliberar solicitud</a>
+                        </td>
+            </tr>
+            <div class="modal fade" id="statusModal@(item.Id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div>
+                    <div>
+                        <div class="modal-dialog" role="document">
+
+                            @using (Html.BeginForm("EditaEstadoOferta", "Finanzas", FormMethod.Post))
+                            {
+                                <div class="modal-content">
+                                    <div>
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center" id="exampleModalLabel">Actualizar Status de Solicitud</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input type="hidden" id="id" name="id" value="@item.Id" />
+                                            <label for="exampleFormControlSelect2">Estado de solicitud de producto: @item.Productos.nombre</label>
+                                            <div>
+                                                <select class="form-control" id="status" name="status">
+                                                    <option value="">Selecciona opcion</option>
+                                                    <option value="2">Aprobado</option>
+                                                    <option value="3">Rechazado</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <input class="btn btn-success" type="submit" value="Actualizar" />
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+</table>
+<div class="container">
+    @Html.ActionLink("Regresar al panel", "Index", "Finanzas", new { @class = "btn btn-primary" })
+</div>
+<br />
+<div class="container">
+    <div class="btn-group">
+        @Html.ActionLink("Aprobadas", "VerCambiosOfertasAp", "Finanzas", new { area = "" }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Rechazadas", "VerCambiosOfertasRec", "Finanzas", new { area = "" }, new { @class = "btn btn-danger" })
+
+    </div>
+</div>

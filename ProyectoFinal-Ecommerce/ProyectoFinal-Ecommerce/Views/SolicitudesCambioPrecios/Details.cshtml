@@ -1,0 +1,96 @@
+﻿@model ProyectoFinal_Ecommerce.Models.SolicitudesCambioPrecio
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SolicitudesCambioPrecio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioActual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioActual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NuevoPrecio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NuevoPrecio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descuento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descuento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        @switch (Model.Status)
+        {
+            case 1:
+                <dd class="bg-primary text-capitalize">Enviado</dd>
+                break;
+            case 2:
+                <dd class="bg-success text-success text-capitalize">Aprobado</dd>
+                break;
+            case 3:
+                <dd class="bg-danger text-danger text-capitalize">Rechazado</dd>
+                break;
+
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaActualizacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaActualizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CambioPrecioVenta.TipoCambio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CambioPrecioVenta.TipoCambio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Productos.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Productos.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (Model.Status == 1)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

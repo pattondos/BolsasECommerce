@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PreciosNuevosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CambioPrecioVenta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TipoCambio" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SolicitudesCambioPrecio" Relationship="Self.FK__Solicitud__Id_Ti__69FBBC1F" FromRole="CambioPrecioVenta" ToRole="SolicitudesCambioPrecio" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_categoria" Type="Int32" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="id_proveedor" Type="Int32" Nullable="false" />
+    <Property Name="precio_compra" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="precio_venta" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="stock" Type="Int32" Nullable="false" />
+    <Property Name="stat" Type="Int32" Nullable="false" />
+    <Property Name="img" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="calificacion" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="SolicitudesCambioPrecio" Relationship="Self.FK__Solicitud__Id_Pr__690797E6" FromRole="Productos" ToRole="SolicitudesCambioPrecio" />
+  </EntityType>
+  <EntityType Name="SolicitudesCambioPrecio">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id_Producto" Type="Int32" />
+    <Property Name="PrecioActual" Type="Double" />
+    <Property Name="Id_TipoCambio" Type="Int32" />
+    <Property Name="NuevoPrecio" Type="Double" />
+    <Property Name="Descuento" Type="Double" />
+    <Property Name="Motivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="FechaActualizacion" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="CambioPrecioVenta" Relationship="Self.FK__Solicitud__Id_Ti__69FBBC1F" FromRole="SolicitudesCambioPrecio" ToRole="CambioPrecioVenta" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK__Solicitud__Id_Pr__690797E6" FromRole="SolicitudesCambioPrecio" ToRole="Productos" />
+  </EntityType>
+  <Association Name="FK__Solicitud__Id_Ti__69FBBC1F">
+    <End Role="CambioPrecioVenta" Type="Self.CambioPrecioVenta" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SolicitudesCambioPrecio" Type="Self.SolicitudesCambioPrecio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CambioPrecioVenta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SolicitudesCambioPrecio">
+        <PropertyRef Name="Id_TipoCambio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Solicitud__Id_Pr__690797E6">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SolicitudesCambioPrecio" Type="Self.SolicitudesCambioPrecio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SolicitudesCambioPrecio">
+        <PropertyRef Name="Id_Producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EntitiesPreciosNuevos" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CambioPrecioVenta" EntityType="Self.CambioPrecioVenta" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" />
+    <EntitySet Name="SolicitudesCambioPrecio" EntityType="Self.SolicitudesCambioPrecio" />
+    <AssociationSet Name="FK__Solicitud__Id_Ti__69FBBC1F" Association="Self.FK__Solicitud__Id_Ti__69FBBC1F">
+      <End Role="CambioPrecioVenta" EntitySet="CambioPrecioVenta" />
+      <End Role="SolicitudesCambioPrecio" EntitySet="SolicitudesCambioPrecio" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Solicitud__Id_Pr__690797E6" Association="Self.FK__Solicitud__Id_Pr__690797E6">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="SolicitudesCambioPrecio" EntitySet="SolicitudesCambioPrecio" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

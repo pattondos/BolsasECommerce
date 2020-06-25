@@ -178,6 +178,7 @@
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SolicitudesCambioPreciosController.cs" />
     <Compile Include="Controllers\SolicitudesComprasController.cs" />
     <Compile Include="Controllers\SolicitudesDevolucionesController.cs" />
     <Compile Include="Controllers\SolicitudesOfertasController.cs" />
@@ -205,6 +206,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BolsasModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CambioPrecioModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CambioPrecioModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CambioPrecioModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CambioPrecioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CambioPrecioModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CambioPrecioModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CambioPrecioVenta.cs">
+      <DependentUpon>PreciosNuevosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Categorias.cs">
       <DependentUpon>ModelEcommerce.tt</DependentUpon>
@@ -243,14 +262,32 @@
     <Compile Include="Models\PagoProveedores.cs">
       <DependentUpon>BolsasModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PreciosNuevosModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PreciosNuevosModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PreciosNuevosModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PreciosNuevosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PreciosNuevosModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PreciosNuevosModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Productos.cs">
-      <DependentUpon>BolsasModel.tt</DependentUpon>
+      <DependentUpon>PreciosNuevosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Proveedores.cs">
       <DependentUpon>BolsasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>ModelEcommerce.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SolicitudesCambioPrecio.cs">
+      <DependentUpon>PreciosNuevosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SolicitudesCompras.cs">
       <DependentUpon>BolsasModel.tt</DependentUpon>
@@ -309,6 +346,16 @@
       <DependentUpon>BolsasModel.edmx</DependentUpon>
       <LastGenOutput>BolsasModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\CambioPrecioModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CambioPrecioModel.edmx</DependentUpon>
+      <LastGenOutput>CambioPrecioModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CambioPrecioModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CambioPrecioModel.edmx</DependentUpon>
+      <LastGenOutput>CambioPrecioModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\ModelEcommerce.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelEcommerce.edmx</DependentUpon>
@@ -318,6 +365,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelEcommerce.edmx</DependentUpon>
       <LastGenOutput>ModelEcommerce.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PreciosNuevosModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PreciosNuevosModel.edmx</DependentUpon>
+      <LastGenOutput>PreciosNuevosModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PreciosNuevosModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PreciosNuevosModel.edmx</DependentUpon>
+      <LastGenOutput>PreciosNuevosModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -334,6 +391,20 @@
     </EntityDeploy>
     <Content Include="Models\BolsasModel.edmx.diagram">
       <DependentUpon>BolsasModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\CambioPrecioModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CambioPrecioModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CambioPrecioModel.edmx.diagram">
+      <DependentUpon>CambioPrecioModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\PreciosNuevosModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PreciosNuevosModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\PreciosNuevosModel.edmx.diagram">
+      <DependentUpon>PreciosNuevosModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -434,6 +505,20 @@
     <Content Include="Views\Finanzas\VerSolicitudesDevoluciones.cshtml" />
     <Content Include="Views\Finanzas\VerSolicitudesOfertas.cshtml" />
     <Content Include="Views\Finanzas\EditarEstado.cshtml" />
+    <Content Include="Views\SolicitudesCambioPrecios\Create.cshtml" />
+    <Content Include="Views\SolicitudesCambioPrecios\Delete.cshtml" />
+    <Content Include="Views\SolicitudesCambioPrecios\Details.cshtml" />
+    <Content Include="Views\SolicitudesCambioPrecios\Edit.cshtml" />
+    <Content Include="Views\SolicitudesCambioPrecios\Index.cshtml" />
+    <Content Include="Views\Finanzas\VerCambiosPreciosEn.cshtml" />
+    <Content Include="Views\Finanzas\VerCambiosPreciosAp.cshtml" />
+    <Content Include="Views\Finanzas\VerCambiosPreciosRec.cshtml" />
+    <Content Include="Views\Finanzas\EditMotivoAc.cshtml" />
+    <Content Include="Views\Finanzas\VerCambiosOfertasEn.cshtml" />
+    <Content Include="Views\Finanzas\VerCambiosOfertasAp.cshtml" />
+    <Content Include="Views\Finanzas\VerCambiosOfertasRec.cshtml" />
+    <Content Include="Views\Finanzas\EditOfer.cshtml" />
+    <Content Include="Views\Finanzas\DetailPrecio.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ProyectoFinal_Ecommerce.Models.SolicitudesCambioPrecio>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Solicitudes de actualizaciones de precio de venta <br />RECHAZADAS</h2>
+<br />
+<br />
+<table class="table table-hover table-striped">
+    <tr>
+        <th>
+            Fecha de envío
+        </th>
+        <th>
+            No. de orden
+        </th>
+        <th>
+            Producto
+        </th>
+        <th>
+            Precio actual
+        </th>
+        <th>
+            Razón de cambio
+        </th>
+        <th>
+            Descuento
+        </th>
+        <th>
+            Nuevo Precio
+        </th>
+        <th>
+            Motivo
+        </th>
+        <th>
+            Status
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.Id_TipoCambio == 1 && item.Status == 3)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaActualizacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Productos.nombre)
+                </td>
+                <td>
+                   $ @Html.DisplayFor(modelItem => item.PrecioActual)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CambioPrecioVenta.TipoCambio)
+                </td>
+                @if (item.Id_TipoCambio != 2)
+                {
+                    <td class="bg-info text-center">
+                        0 %
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descuento) %
+                    </td>
+                }
+                <td>
+                  $ @Html.DisplayFor(modelItem => item.NuevoPrecio)
+                </td>
+                <td class="bg-danger">
+                    @Html.DisplayFor(modelItem => item.Motivo)
+                </td>
+
+                @switch (item.Status)
+                {
+                    case 1:
+                        <td class="bg- bg-primary text-capitalize">Recibido</td>
+                        break;
+                    case 2:
+                        <td class="bg-success text-success text-capitalize">Aprobado</td>
+                        break;
+                    case 3:
+                        <td class="bg-danger text-danger text-capitalize">Rechazado</td>
+                        break;
+                }
+                <td>
+
+                    @Html.ActionLink("Motivo Rechazo", "EditMotivoAc", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+
+        }
+       
+    }
+</table>
+<div class="container">
+    @Html.ActionLink("Regresar al listado", "VerCambiosPreciosEn", "Finanzas", new { @class = "btn btn-primary" })
+</div>

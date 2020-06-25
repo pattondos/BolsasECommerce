@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="02996c370ac742b29fbc673f6f1556c3" Name="Diagram1">
+        <EntityTypeShape EntityType="CambioPrecioModel.CambioPrecioVenta" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CambioPrecioModel.Productos" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CambioPrecioModel.SolicitudesCambioPrecio" Width="1.5" PointX="3.875" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="CambioPrecioModel.FK__Solicitud__Id_Ti__7A3223E8" ManuallyRouted="false" />
+        <AssociationConnector Association="CambioPrecioModel.FK__Solicitud__Id_Pr__793DFFAF" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

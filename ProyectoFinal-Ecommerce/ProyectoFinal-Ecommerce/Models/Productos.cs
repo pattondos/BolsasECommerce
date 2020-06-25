@@ -17,9 +17,7 @@ namespace ProyectoFinal_Ecommerce.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Productos()
         {
-            this.SolicitudesVentasActualizar = new HashSet<SolicitudesVentasActualizar>();
-            this.SolicitudesDevoluciones = new HashSet<SolicitudesDevoluciones>();
-            this.SolicitudesOfertas = new HashSet<SolicitudesOfertas>();
+            this.SolicitudesCambioPrecio = new HashSet<SolicitudesCambioPrecio>();
         }
     
         public int id { get; set; }
@@ -36,10 +34,6 @@ namespace ProyectoFinal_Ecommerce.Models
         public Nullable<decimal> calificacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SolicitudesVentasActualizar> SolicitudesVentasActualizar { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SolicitudesDevoluciones> SolicitudesDevoluciones { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SolicitudesOfertas> SolicitudesOfertas { get; set; }
+        public virtual ICollection<SolicitudesCambioPrecio> SolicitudesCambioPrecio { get; set; }
     }
 }

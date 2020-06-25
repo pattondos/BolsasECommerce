@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CambioPrecioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CambioPrecioVenta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="TipoCambio" Type="nchar" MaxLength="25" />
+    <Property Name="Descripcion" Type="text" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="id_categoria" Type="int" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="id_proveedor" Type="int" Nullable="false" />
+    <Property Name="precio_compra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="precio_venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="stock" Type="int" Nullable="false" />
+    <Property Name="stat" Type="int" Nullable="false" />
+    <Property Name="img" Type="varchar" MaxLength="30" />
+    <Property Name="calificacion" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="SolicitudesCambioPrecio">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id_Producto" Type="int" Nullable="false" />
+    <Property Name="PrecioActual" Type="float" />
+    <Property Name="Id_TipoCambio" Type="int" Nullable="false" />
+    <Property Name="NuevoPrecio" Type="float" />
+    <Property Name="Motivo" Type="text" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="FechaActualizacion" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Solicitud__Id_Pr__793DFFAF">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SolicitudesCambioPrecio" Type="Self.SolicitudesCambioPrecio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SolicitudesCambioPrecio">
+        <PropertyRef Name="Id_Producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Solicitud__Id_Ti__7A3223E8">
+    <End Role="CambioPrecioVenta" Type="Self.CambioPrecioVenta" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SolicitudesCambioPrecio" Type="Self.SolicitudesCambioPrecio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CambioPrecioVenta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SolicitudesCambioPrecio">
+        <PropertyRef Name="Id_TipoCambio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CambioPrecioModelStoreContainer">
+    <EntitySet Name="CambioPrecioVenta" EntityType="Self.CambioPrecioVenta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SolicitudesCambioPrecio" EntityType="Self.SolicitudesCambioPrecio" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Solicitud__Id_Pr__793DFFAF" Association="Self.FK__Solicitud__Id_Pr__793DFFAF">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="SolicitudesCambioPrecio" EntitySet="SolicitudesCambioPrecio" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Solicitud__Id_Ti__7A3223E8" Association="Self.FK__Solicitud__Id_Ti__7A3223E8">
+      <End Role="CambioPrecioVenta" EntitySet="CambioPrecioVenta" />
+      <End Role="SolicitudesCambioPrecio" EntitySet="SolicitudesCambioPrecio" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
