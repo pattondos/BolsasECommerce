@@ -114,12 +114,43 @@ p, .caption h4, label, table, .panel {
     margin-left: 0;
 }
 
+/*.navbar-brand .text-logo, footer .text-logo-footer {
+    font-family: 'Grand Hotel' !important;
+}
+
+.navbar-brand, .header-block .text-logo, .cart .navbar-brand {
+    color: #fff;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.navbar-brand, .text-logo {
+    font-size: 46px !important;
+}*/
+
 .cart a {
     color: #fff;
     position: relative;
     display: block;
     font-size: 3rem;
 }
+
+/*a, a:hover, input.text, input.text:focus, select.select, select.select:hover {
+    text-decoration: none !important;
+}
+
+a {
+    color: #333;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}*/
 
 .cart-size {
     font-size: 30px;

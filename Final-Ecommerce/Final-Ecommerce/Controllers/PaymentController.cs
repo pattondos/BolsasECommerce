@@ -170,8 +170,6 @@ namespace Final_Ecommerce.Controllers
             venta.sub_total = carrito.Sum(i => i.Cantidad * i.Precio_venta);
             venta.total = venta.sub_total;
 
-            venta.stat = 0;
-
             _unitOfWork.GetRepositoryInstance<Ventas>().Add(venta);
 
             foreach (CarritoModel item in carrito)
