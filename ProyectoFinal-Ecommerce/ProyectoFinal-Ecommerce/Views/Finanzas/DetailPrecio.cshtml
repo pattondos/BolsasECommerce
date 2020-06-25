@@ -1,0 +1,139 @@
+﻿@model ProyectoFinal_Ecommerce.Models.SolicitudesCambioPrecio
+
+@{
+    ViewBag.Title = "DetailPrecio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Id_TipoCambio != 2)
+{
+    <h2 class="text-center">Cambio de precio por necesidad económica</h2>
+}
+else
+{
+    <h2 class="text-center">Cambio de precio por oferta</h2>
+}
+<br />
+<div>
+    <h4>Detalles de la solicitud para deliberación</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Fecha de envío
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaActualizacion)
+        </dd>
+
+        <br />
+        <dt>
+            Nombre del producto
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Productos.nombre)
+        </dd>
+
+        <br />
+        <dt>
+            Tipo de motivo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CambioPrecioVenta.TipoCambio)
+        </dd>
+
+        <br />
+        <dt>
+            Precio actual
+        </dt>
+
+        <dd>
+            $ @Html.DisplayFor(model => model.PrecioActual)
+        </dd>
+
+        <br />
+        <dt>
+            Oferta
+        </dt>
+        @if (Model.Id_TipoCambio != 2)
+        {
+            <dd>
+                0 %
+            </dd>
+        }
+        else
+        {
+
+            <dd>
+                @Html.DisplayFor(model => model.Descuento) %
+            </dd>
+        }
+
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NuevoPrecio)
+        </dt>
+
+        @if (Model.Id_TipoCambio != 2)
+        {
+            <dd>
+                $ @Html.DisplayFor(model => model.NuevoPrecio)
+            </dd>
+        }
+        else
+        {
+            float desc = 0;
+            <dd>
+                @{
+                    desc += (float)(Model.PrecioActual - ((Model.PrecioActual * Model.Descuento) / 100));
+                }
+                $ @desc
+            </dd>
+        }
+
+        <br />
+        <dt>
+            Descripción del motivo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        @switch (Model.Status)
+        {
+            case 1:
+                <dd class="text-primary">Enviado</dd>
+                break;
+            case 2:
+                <dd class="text-success text-success text-capitalize">Aprobado</dd>
+                break;
+            case 3:
+                <dd class="text-danger text-danger text-capitalize">Rechazado</dd>
+                break;
+
+        }
+
+    </dl>
+</div>
+@if (Model.Id_TipoCambio != 2)
+{
+<p>
+    @Html.ActionLink("Regresar al listado", "VerCambiosPreciosEn", "Finanzas", new { }, new { @class = "btn btn-primary" })
+</p>
+}
+else
+{
+<p>
+    @Html.ActionLink("Regresar al listado", "VerCambiosOfertasEn", "Finanzas", new { }, new { @class = "btn btn-primary" })
+</p>
+}
+

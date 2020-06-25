@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CambioPrecioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CambioPrecioVenta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TipoCambio" Type="nchar" MaxLength="25" />
+          <Property Name="Descripcion" Type="text" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="id_categoria" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="id_proveedor" Type="int" Nullable="false" />
+          <Property Name="precio_compra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="precio_venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+          <Property Name="stat" Type="int" Nullable="false" />
+          <Property Name="img" Type="varchar" MaxLength="30" />
+          <Property Name="calificacion" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="SolicitudesCambioPrecio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_Producto" Type="int" Nullable="false" />
+          <Property Name="PrecioActual" Type="float" />
+          <Property Name="Id_TipoCambio" Type="int" Nullable="false" />
+          <Property Name="NuevoPrecio" Type="float" />
+          <Property Name="Motivo" Type="text" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Solicitud__Id_Pr__793DFFAF">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesCambioPrecio" Type="Self.SolicitudesCambioPrecio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesCambioPrecio">
+              <PropertyRef Name="Id_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__Id_Ti__7A3223E8">
+          <End Role="CambioPrecioVenta" Type="Self.CambioPrecioVenta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesCambioPrecio" Type="Self.SolicitudesCambioPrecio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CambioPrecioVenta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SolicitudesCambioPrecio">
+              <PropertyRef Name="Id_TipoCambio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CambioPrecioModelStoreContainer">
+          <EntitySet Name="CambioPrecioVenta" EntityType="Self.CambioPrecioVenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SolicitudesCambioPrecio" EntityType="Self.SolicitudesCambioPrecio" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Solicitud__Id_Pr__793DFFAF" Association="Self.FK__Solicitud__Id_Pr__793DFFAF">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="SolicitudesCambioPrecio" EntitySet="SolicitudesCambioPrecio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__Id_Ti__7A3223E8" Association="Self.FK__Solicitud__Id_Ti__7A3223E8">
+            <End Role="CambioPrecioVenta" EntitySet="CambioPrecioVenta" />
+            <End Role="SolicitudesCambioPrecio" EntitySet="SolicitudesCambioPrecio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CambioPrecioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CambioPrecioVenta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TipoCambio" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SolicitudesCambioPrecio" Relationship="Self.FK__Solicitud__Id_Ti__7A3223E8" FromRole="CambioPrecioVenta" ToRole="SolicitudesCambioPrecio" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_categoria" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="id_proveedor" Type="Int32" Nullable="false" />
+          <Property Name="precio_compra" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="precio_venta" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          <Property Name="stat" Type="Int32" Nullable="false" />
+          <Property Name="img" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="calificacion" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="SolicitudesCambioPrecio" Relationship="Self.FK__Solicitud__Id_Pr__793DFFAF" FromRole="Productos" ToRole="SolicitudesCambioPrecio" />
+        </EntityType>
+        <EntityType Name="SolicitudesCambioPrecio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_Producto" Type="Int32" Nullable="false" />
+          <Property Name="PrecioActual" Type="Double" />
+          <Property Name="Id_TipoCambio" Type="Int32" Nullable="false" />
+          <Property Name="NuevoPrecio" Type="Double" />
+          <Property Name="Motivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CambioPrecioVenta" Relationship="Self.FK__Solicitud__Id_Ti__7A3223E8" FromRole="SolicitudesCambioPrecio" ToRole="CambioPrecioVenta" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__Solicitud__Id_Pr__793DFFAF" FromRole="SolicitudesCambioPrecio" ToRole="Productos" />
+        </EntityType>
+        <Association Name="FK__Solicitud__Id_Ti__7A3223E8">
+          <End Role="CambioPrecioVenta" Type="Self.CambioPrecioVenta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesCambioPrecio" Type="Self.SolicitudesCambioPrecio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CambioPrecioVenta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SolicitudesCambioPrecio">
+              <PropertyRef Name="Id_TipoCambio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__Id_Pr__793DFFAF">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SolicitudesCambioPrecio" Type="Self.SolicitudesCambioPrecio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesCambioPrecio">
+              <PropertyRef Name="Id_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntitiesCambioPrecio" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CambioPrecioVenta" EntityType="Self.CambioPrecioVenta" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="SolicitudesCambioPrecio" EntityType="Self.SolicitudesCambioPrecio" />
+          <AssociationSet Name="FK__Solicitud__Id_Ti__7A3223E8" Association="Self.FK__Solicitud__Id_Ti__7A3223E8">
+            <End Role="CambioPrecioVenta" EntitySet="CambioPrecioVenta" />
+            <End Role="SolicitudesCambioPrecio" EntitySet="SolicitudesCambioPrecio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__Id_Pr__793DFFAF" Association="Self.FK__Solicitud__Id_Pr__793DFFAF">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="SolicitudesCambioPrecio" EntitySet="SolicitudesCambioPrecio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CambioPrecioModelStoreContainer" CdmEntityContainer="EntitiesCambioPrecio">
+          <EntitySetMapping Name="CambioPrecioVenta">
+            <EntityTypeMapping TypeName="CambioPrecioModel.CambioPrecioVenta">
+              <MappingFragment StoreEntitySet="CambioPrecioVenta">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TipoCambio" ColumnName="TipoCambio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="CambioPrecioModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+                <ScalarProperty Name="precio_compra" ColumnName="precio_compra" />
+                <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="stat" ColumnName="stat" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SolicitudesCambioPrecio">
+            <EntityTypeMapping TypeName="CambioPrecioModel.SolicitudesCambioPrecio">
+              <MappingFragment StoreEntitySet="SolicitudesCambioPrecio">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
+                <ScalarProperty Name="PrecioActual" ColumnName="PrecioActual" />
+                <ScalarProperty Name="Id_TipoCambio" ColumnName="Id_TipoCambio" />
+                <ScalarProperty Name="NuevoPrecio" ColumnName="NuevoPrecio" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

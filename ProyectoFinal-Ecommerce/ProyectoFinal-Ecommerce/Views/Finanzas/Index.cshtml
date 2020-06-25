@@ -4,58 +4,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div style="text-align:center;" >
-    <h2 >FINANZAS</h2>
+<div style="text-align:center;">
+    <h2>FINANZAS</h2>
 </div>
 
 
 <div class="row" style="text-align:center;">
-    
-    <div class="col-sm-6">
-        <div class="card" style="border-bottom-color:black;">
-            <div class="card-body">
-                <img src="~/Content/Imagenes/listar.png" style="width:10%" />
-                <h5 class="card-title">Solicitudes Compras</h5>
-                <p class="card-text">Ver solicitudes del departamento del compras</p>
-                <p>@Html.ActionLink("Solicitudes compras", "VerSolicitudesCompras", "Finanzas", new { area = "" }, new { @class = "btn btn-primary" })</p>
-                <p>@*@Html.ActionLink("Solicitudes compras", "Index", "SolicitudesCompras", new { area = "" }, new { @class = "btn btn-primary" })*@</p>
-            </div>
-        </div>
-    </div>
 
-    <div class="col-sm-6" >
+    <div class="col-sm-6" style="margin-top: 50px;">
         <div class="card">
             <div class="card-body">
                 <img src="~/Content/Imagenes/listar.png" style="width:10%" />
-                <h5 class="card-title">Solicitudes de actualización de precios</h5>
-                <p class="card-text">Ver solicitudes del departamento de ventas</p>
-                <p style="">@Html.ActionLink("Solicitudes de actualizar precios", "VerSolicitudesActualizar", "Finanzas", new { area = "" }, new { @class = "btn btn-primary" })</p>
-                @*<p style="">@Html.ActionLink("Solicitudes de actualizar precios", "Index", "SolicitudesVentasActualizars", new { area = "" }, new { @class = "btn btn-primary" })</p>*@
-            </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6" style="margin-top: 75px;">
-            <div class="card">
-                <div class="card-body">
-                    <img src="~/Content/Imagenes/listar.png" style="width:10%" />
-                    <h5 class="card-title">Solicitudes de devolución</h5>
-                    <p class="card-text">Ver solicitudes de devolución de clientes</p>
-                    <p>@Html.ActionLink("Solicitudes de devolución", "VerSolicitudesDevoluciones", "Finanzas", new { area = "" }, new { @class = "btn btn-primary" })</p>
-                    <p>@*@Html.ActionLink("Solicitudes de devolución", "Index", "SolicitudesDevoluciones", new { area = "" }, new { @class = "btn btn-primary" })*@</p>
+                <h4 style="text-transform:uppercase" class="card-title">actualización de precios</h4>
+                <p class="card-text">Solicitudes para cambio de precio de venta por<br /> <b>'Necesidades económicas'</b></p>
+                <div class="btn-group">
+                    <p>@Html.ActionLink("Ver Recibidas", "VerCambiosPreciosEn", "Finanzas", new { area = "" }, new { @class = "btn btn-primary" })</p>
                 </div>
+            </div>
         </div>
     </div>
-    <div class="col-sm-6" style="margin-top: 75px;">
+    <div class="col-sm-6" style="margin-top: 50px;">
         <div class="card">
             <div class="card-body">
                 <img src="~/Content/Imagenes/listar.png" style="width:10%" />
-                <h5 class="card-title">Solicitudes de ofertas</h5>
-                <p class="card-text">Ver solicitudes de ofertas de productos</p>
-                <p>@Html.ActionLink("Solicitudes de ofertas", "VerSolicitudesOfertas", "Finanzas", new { area = "" }, new { @class = "btn btn-primary" })</p>
-                <p>@*@Html.ActionLink("Solicitudes de ofertas", "Index", "SolicitudesOfertas", new { area = "" }, new { @class = "btn btn-primary" })*@</p>
+                <h4 style="text-transform:uppercase" class="card-title">Ofertas</h4>
+                <p class="card-text">Solicitudes para cambio de precio de venta por <br /> <b>Oferta</b></p>
+                <div class="btn-group">
+                    <p>@Html.ActionLink("Ver Recibidas", "VerCambiosOfertasEn", "Finanzas", new { area = "" }, new { @class = "btn btn-primary" })</p>
+
+                </div>
             </div>
         </div>
     </div>
 
 </div>
+    <br />
+    <br />
+
+    <div class="container">
+        <div class="container-fluid">
+            <h1 class="text-danger">
+                Capital Disponible
+            </h1>
+        </div>
+        <div class="container-fluid">
+            <h3 class="text-danger"> <b>$ 1'234,567.89</b></h3>
+        </div>
+    </div>
